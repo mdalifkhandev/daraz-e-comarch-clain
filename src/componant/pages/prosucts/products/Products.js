@@ -35,7 +35,7 @@ const Products = () => {
 
     return (
         <div>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3'>
+            <div className='grid mt-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3'>
                 {
                     data.map(produc => <Productscard
                         key={produc._id}
@@ -44,9 +44,9 @@ const Products = () => {
                 }
             </div>
             <div className="pagination">
-                <p>Currently selected page: {page} and size: {prpagdata}</p>
+                <p>Currently selected page: {page+1} and size: {prpagdata}</p>
                 {
-                    [...Array(totalpag || 10).keys()].map(number => <button
+                    [...Array(totalpag || numberofproduc).keys()].map(number => <button
                         key={number}
                         className={page === number ? 'btn m-3' : 'btn btn-outline m-3'}
                         onClick={() => setpage(number)}
@@ -57,6 +57,7 @@ const Products = () => {
                 <select onChange={event => setprpagdata(event.target.value)}
                 className='btn btn-outline m-3'
                 >
+                    <option value="9">9</option>
                     <option value="10" selected>10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
