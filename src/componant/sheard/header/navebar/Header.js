@@ -5,14 +5,14 @@ const Header = () => {
 
     const menuitem = <>
 
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
+        <li><a href='/#'>Item 1</a></li>
+        <li><a href='/#'>Item 2</a></li>
+        <li><a href='/#'>Item 3</a></li>
 
     </>
     return (
         <div>
-            <div className="navbar bg-orange-500 text-white">
+            <div className="navbar bg-orange-500 h-20 text-white">
                 <div className="navbar-start mx-20">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -22,8 +22,8 @@ const Header = () => {
                             { menuitem }
                         </ul>
                     </div>
-                    <img src={logo} className='w-8 right-4'></img>
-                    <a className="btn btn-ghost text-xl">Khan</a>
+                    <img src={logo} alt='' className='w-8 right-4'></img>
+                    <a href='/#' className="btn btn-ghost text-xl">Khan</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -31,7 +31,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <a href='/#' className="btn">Button</a>
                 </div>
             </div>
         </div>
