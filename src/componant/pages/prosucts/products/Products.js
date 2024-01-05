@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Productscard from '../productscard/Productscard';
 
 
-const Products = () => {
+const Products = ({categorywicdata}) => {
 
     const [numberofproduc, setnumberofproduc] = useState()
     const [data, setdata] = useState([])
@@ -24,7 +24,7 @@ const Products = () => {
     // console.log(numberofproduc);
 
     const totalpag = Math.ceil(numberofproduc / prpagdata)
-   
+   console.log(categorywicdata);
     // if(data.length=0){
     //     return 0
     // }
@@ -58,7 +58,7 @@ const Products = () => {
                 className='btn btn-outline m-3'
                 >
                     <option value="9">9</option>
-                    <option value="10" selected>10</option>
+                    <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
                 </select>

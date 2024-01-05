@@ -1,0 +1,8 @@
+.overover{
+    overflow-y: scroll;
+    height: 349px;
+    scrollbar-width: none;
+}
+.overover::-webkit-scrollbar {
+    display: none;
+}
