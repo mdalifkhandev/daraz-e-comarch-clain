@@ -30,8 +30,11 @@ const Header = () => {
                         {menuitem}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                {/* <div className="navbar-end">
                     <a href='/#' className="btn">Button</a>
+                </div> */}
+                <div className="navbar-end">
+                <input type="text" placeholder="Search here" className="input input-bordered w-full max-w-xs" />
                 </div>
             </div>
         </div>
