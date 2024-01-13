@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Productscard from '../productscard/Productscard';
+// import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 
-const Products = ({ categorywicdata }) => {
+const Products = () => {
 
     const [numberofproduc, setnumberofproduc] = useState()
     const [data, setdata] = useState([])
     const [page, setpage] = useState(0)
     const [prpagdata, setprpagdata] = useState(10)
     const [loading, setLoading] = useState(true);
+    // const [search, setsearch] = useState('')
+    // const {search}=useContext(Authcontext)
+    // console.log(search);
 
     useEffect(() => {
         const uri = `http://localhost:5000/all-products?page=${page}&size=${prpagdata}`
@@ -22,9 +26,22 @@ const Products = ({ categorywicdata }) => {
             })
     }, [page, prpagdata])
     // console.log(numberofproduc);
+    // const searchref = useRef()
 
+    // const searchhendler=event=>{
+    //     event.preventDefault()
+    //     setsearch(event.target.search.value)
+    //     console.log(search);
+    // }
+    // const searchendler = () => {
+    //     setsearch(searchref.current.value);
+    //     console.log(search);
+    // }
+    // const searchendler = () => {
+    //     setsearch(searchref.current.value);
+    // }
     const totalpag = Math.ceil(numberofproduc / prpagdata)
-    console.log(categorywicdata);
+    // console.log(categorywicdata);
     // if(data.length=0){
     //     return 0
     // }
@@ -32,14 +49,18 @@ const Products = ({ categorywicdata }) => {
     if (loading) {
         <h1>Loading .... </h1>
     }
-
     return (
         <div>
+            {/* <form  className='flex gap-3 justify-center'>
+                
+                    
+                    <input type="text" className=' w-full max-w-xs input input-bordered input-success bg-orange-300' name="search" placeholder='Search Here' />
+                    <input type="text" placeholder="Search here" name="search" className="input input-bordered w-full max-w-xs text-white" />
+                <input onClick={searchendler} type="submit" className='btn btn-primary btn-outline' value="Search" ref={searchref} />
+            </form> */}
+            
             <div className='grid mt-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3'>
-               
-
-
-               {
+                {
                     data.map(produc => <Productscard
                         key={produc._id}
                         produc={produc}

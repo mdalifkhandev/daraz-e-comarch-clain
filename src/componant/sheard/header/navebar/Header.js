@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {  useRef, useState } from 'react';
 import logo from '../../../assets/logo.png'
+// import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 const Header = () => {
 
@@ -10,6 +11,12 @@ const Header = () => {
         <li><a href='/#'>Item 3</a></li>
 
     </>
+    const searchref=useRef()
+    const [search , setsearch]=useState()
+    const searchendler=()=>{
+        setsearch(searchref.current.value);
+        console.log(search);
+    }
     return (
         <div>
             <div className="navbar bg-orange-500 h-20 text-white">
@@ -30,11 +37,11 @@ const Header = () => {
                         {menuitem}
                     </ul>
                 </div>
-                {/* <div className="navbar-end">
-                    <a href='/#' className="btn">Button</a>
-                </div> */}
-                <div className="navbar-end">
-                <input type="text" placeholder="Search here" className="input input-bordered w-full max-w-xs" />
+                <div className="navbar-end gap-3">
+                <input type="text" ref={searchref} placeholder="Search here" className="input input-bordered w-full max-w-xs" />
+                    <button onClick={searchendler} className="btn">Search</button>
+                {/* </div>
+                <div className="navbar-end"> */}
                 </div>
             </div>
         </div>
