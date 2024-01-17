@@ -1,11 +1,13 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { FaCartArrowDown, FaRegStar, FaStar } from "react-icons/fa";
+import useTitle from '../../../../hocks/usetitle/useTitle';
 
 const Productdetails = () => {
     const data = useLoaderData()
     console.log(data);
     // let i=0
+    useTitle(data.name)
     const ra = data.ratings
     // const [rat,setrat]=useState()
     // while (i<=ra) {
@@ -34,7 +36,7 @@ const Productdetails = () => {
                     <h1 className='font-bold text-xl line-through'> $ {data.price}  </h1>
                     <h1 className='font-bold text-xl'> 20%  OFF</h1>
                     <div className='grid grid-cols-2 gap-4 my-10'>
-                        <button className='btn btn-primary'>Buy Now</button>
+                        <button className='btn btn-primary'><Link to={`/producdetails/payment/${data._id}`}>Buy Now</Link></button>
                         <button className='btn btn-outline outline-dotted' style={{ backgroundColor: 'orange' }} >Add To Card <FaCartArrowDown className='text-3xl text-black' /></button>
                     </div>
                 </div>
@@ -63,33 +65,34 @@ const Productdetails = () => {
                         <li> quality Details Best Quality </li>
                     </ul>
                 </div>
-              
+
 
             </div>
             <div>
                 <h1 className='text-5xl font-bold'>Ratings</h1>
-                <div className='flex gap-4 mt-5 ' style={{color:'gold'}}>
-                    <h1 className='text-5xl font-bold'>{data.ratings}</h1>
-                    <h1 className='bg-orange-400 mx-5 p-3 text-2xl'>very Good</h1>
+                <div className='flex gap-4 mt-5 ' style={{ color: 'gold' }}>
+                    <h1 className='text-5xl font-bold' key={data._id}>{data.ratings}</h1>
+                    <h1 className='bg-orange-400 mx-5 p-3 text-2xl' key={data._id}>very Good</h1>
                 </div>
                 <div className='flex mt-5 p-5'>
-                {
-                    Array.from({ length: ra }, (v, i) => <>
-                        <FaStar className='text-5xl font-bold' style={{color:'gold'}} />
-
-                    </>
-                    )
-                }
-                <FaRegStar className='text-5xl font-bold' style={{color:'gold'}} />
+                    {
+                        Array.from({ length: ra }, (v, i) => 
+                            <>
+                                <FaStar className='text-5xl font-bold' style={{ color: 'gold' }}/>
+                            </>
+                        
+                        )
+                    }
+                    <FaRegStar className='text-5xl font-bold' style={{ color: 'gold' }} />
                 </div>
                 <h1 className='text-2xl'>Total Rating : {data?.ratingsCount}</h1>
             </div>
             <div>
                 <h1>Revuew :</h1>
-                <div>
-                    <h>This produc is good</h>
-                    <img className='w-40' alt='' src={data.img}/>
-                </div>
+                {/* <div>
+                    <h1>This produc is good</h1>
+                    <img className='w-40' alt='' src={data.img} />
+                </div> */}
             </div>
         </div>
     );

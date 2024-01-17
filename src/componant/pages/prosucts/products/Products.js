@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Productscard from '../productscard/Productscard';
+import useTitle from '../../../hocks/usetitle/useTitle';
 // import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 
@@ -10,9 +11,10 @@ const Products = () => {
     const [page, setpage] = useState(0)
     const [prpagdata, setprpagdata] = useState(10)
     const [loading, setLoading] = useState(true);
+    useTitle(`All Product`)
     // const [search, setsearch] = useState('')
     // const {search}=useContext(Authcontext)
-    // console.log(search);
+    // console.log(data);
 
     useEffect(() => {
         const uri = `http://localhost:5000/all-products?page=${page}&size=${prpagdata}`
