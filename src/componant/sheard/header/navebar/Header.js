@@ -1,15 +1,21 @@
-import React, {  useRef, useState } from 'react';
+import React, {  useContext, useRef, useState } from 'react';
 import logo from '../../../assets/logo.png'
+import { Authcontext } from '../../../context/authprovaider/Authprovider';
 // import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 const Header = () => {
+
+    const { user} = useContext(Authcontext)
 
     const menuitem = <>
 
         <li><a href='/#'>Item 1</a></li>
         <li><a href='/#'>Item 2</a></li>
+        {
+            user? <li><a href='/login'>Login</a></li> :
         <li><a href='/signup'>Sign UP</a></li>
-        <li><a href='/login'>Sign UP</a></li>
+        }
+        
 
     </>
     const searchref=useRef()

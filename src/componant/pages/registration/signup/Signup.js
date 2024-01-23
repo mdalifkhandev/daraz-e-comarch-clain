@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import useTitle from '../../../hocks/usetitle/useTitle';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     useTitle("Signup")
@@ -47,13 +48,13 @@ const Signup = () => {
                     <input placeholder='Type your lest name' className='input input-bordered w-full text-white' {...register("lestName")} />
                     <br />
                     <span className="label">Type Your Email</span>
-                    <input placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
+                    <input type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
                     <br />
                     <span className="label">Type Your password</span>
-                    <input placeholder='Type Your password' className='input input-bordered w-full text-white' {...register("password")} />
+                    <input type='password' placeholder='Type Your password' className='input input-bordered w-full text-white' {...register("password")} />
                     <br />
                     <input className='btn mt-4 w-full btn-primary' type="submit" />
-                    <p>Alrady have an account Please login</p>
+                    <p>Alrady have an account <Link to='/login'> Please login </Link> </p>
                 </form>
                 <div className='divider'>
                     OR

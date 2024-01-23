@@ -1,22 +1,58 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Authcontext } from '../../../context/authprovaider/Authprovider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const {  googlelogin,loginuser } = useContext(Authcontext)
     const {register,handleSubmit}=useForm()
-    const onSubmit = data => console.log(data);
+    const [errors , seterrors]=useState('')
+    const onSubmit = data =>{
+        const email=data.email
+        const password=data.password
+        loginuser(email,password)
+        .then(resualt=>{
+            console.log(resualt.user);
+            toast.success('Login successfully')
+        })
+        .catch((error) => seterrors(error));
+        //  console.log(email,password)
+        };
+
+
+    const googlehendler=()=>{
+        googlelogin()
+        .then(resualt=>{
+            console.log(resualt.user);
+            toast.success('Login successfully')
+        })
+        .catch((error) => seterrors(error));
+    }
     return (
         <div  className='grid place-content-center'>
             <div  className='w-80 shadow-2xl m-4 p-6'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("firstName")} />
-                <select {...register("gender")}>
-                    <option value="female">female</option>
-                    <option value="male">male</option>
-                    <option value="other">other</option>
-                </select>
-                <input type="submit" />
+            <h1 className='text-4xl font-bold text-center m-3'> Login</h1>
+            <span className="label">Type Your Email</span>
+                    <input type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
+                    <br />
+                    <span className="label">Type Your password</span>
+                    <input type='password' placeholder='Type Your password' className='input input-bordered w-full text-white' {...register("password")} />
+                    <br />
+                    <input className='btn mt-4 w-full btn-primary' type="submit" />
+                    <p className='my-2' >You have not account <Link to='/signup'> Please Signup </Link> </p>
+                    {
+                        errors? <p className='text-red-600 my-3'>{errors.message}</p>:<p></p>
+                    }
+                    
             </form>
-
+            <div className='divider'>
+                    OR
+                </div>
+                <button onClick={googlehendler} className="btn w-full btn-outline">
+                    CONTINUE WITH GOOGLE
+                </button>
             </div>
         </div>
     );

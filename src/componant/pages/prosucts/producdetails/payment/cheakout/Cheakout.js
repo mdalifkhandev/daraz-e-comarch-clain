@@ -11,7 +11,7 @@ const Cheakout = ({ catdta }) => {
 
   const stripe = useStripe();
   const elements = useElements();
-  const { totalprice, name,seller,id,quentity,img } = catdta;
+  const { totalprice, name,seller,id,quentity,img,producname,email,phon,address } = catdta;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -61,8 +61,8 @@ const Cheakout = ({ catdta }) => {
           card: card,
           billing_details: {
             name: name,
-            // seller,
-            // img:img
+            email:email
+            
           },
         },
       },
@@ -82,7 +82,12 @@ const Cheakout = ({ catdta }) => {
         seller,
         orderId: id,
         quentity,
-        img
+        img,
+        name,
+        email,
+        producname,
+        phon,
+        address
       }
       fetch('http://localhost:5000/payments', {
         method: 'POST',

@@ -9,18 +9,7 @@ const Productdetails = () => {
     // let i=0
     useTitle(data.name)
     const ra = data.ratings
-    // const [rat,setrat]=useState()
-    // while (i<=ra) {
-    //     console.log(i);
-    //     i++
-    // }
-    // for (let i = 1; i <= ra; i++) {
-    //     console.log(i);
-    //     const reat=<>
-    //     <FaStar/>
-    //     </>
-    //     return reat
-    // }
+   
 
     return (
         <div>
@@ -32,7 +21,7 @@ const Productdetails = () => {
                     <h1 className='font-bold text-3xl'>{data.name}</h1>
                     <h1 className='font-bold text-xl'>{data.ratings} Ratings</h1>
                     <h1 className='font-bold text-xl'> Brand : {data.seller} </h1>
-                    <h1 className='font-bold text-5xl'> $ {(data.price / 100) * 80}</h1>
+                    <h1 className='font-bold text-5xl'> $ {Math.floor((data.price / 100) * 80)}</h1>
                     <h1 className='font-bold text-xl line-through'> $ {data.price}  </h1>
                     <h1 className='font-bold text-xl'> 20%  OFF</h1>
                     <div className='grid grid-cols-2 gap-4 my-10'>

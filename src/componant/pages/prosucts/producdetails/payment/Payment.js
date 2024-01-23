@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useTitle from '../../../../hocks/usetitle/useTitle';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Cheakout from './cheakout/Cheakout';
+import { Authcontext } from '../../../../context/authprovaider/Authprovider';
 
 
 
@@ -14,6 +15,12 @@ const stripePromise = loadStripe('pk_test_51NrtkkG1p3nVEVTLlIhN9JauWDQ4WVtWQ7GTO
 
 
 const Payment = () => {
+    const { user } = useContext(Authcontext)
+    const[phon,setphon]=useState('')
+    const[address,setaddress]=useState('')
+    const name = user?.displayName
+    const email = user?.email
+    console.log(name, email, user,phon,address);
     const dat = useLoaderData()
     console.log(dat);
     const [quentity, setquentity] = useState(1)
@@ -25,18 +32,21 @@ const Payment = () => {
         setquentity(quentity - 1)
     }
     const dailyvary = 5
-    const itemtotalprice = (dat.price) * quentity
-    const totalprice=dailyvary + ((dat.price) * quentity)
-    const catdta={
+    const itemtotalprice = Math.floor((((dat.price) * quentity) / 100) * 80)
+    const totalprice = dailyvary + Math.floor((((dat.price) * quentity) / 100) * 80)
+    const catdta = {
         dailyvary,
         itemtotalprice,
         totalprice,
-        id:dat._id,
+        id: dat._id,
         quentity,
-        img:dat.img,
-        name:dat.name,
-        seller:dat.seller,
-        
+        img: dat.img,
+        producname:dat.name,
+        seller: dat.seller,
+        name,
+        email,
+        phon,
+        address
     }
     const options = {
         mode: 'payment',
@@ -48,16 +58,27 @@ const Payment = () => {
         },
     };
     // console.log(catdta);
+
+    const hendlsubmitnumber = event => {
+        setphon(event.target.value)
+    };
+    const hendlsubmitaddress = event => {
+        setaddress(event.target.value)
+    };
+
     return (
         <div>
             <div className='grid grid-cols-3 gap-3 my-8'>
                 {/* user details */}
                 <div className='col-span-2 shadow-xl'>
                     <div className='shadow-xl'>
-                        <h1>user name</h1>
-                        <h1>user phon</h1>
-                        <h1>user address</h1>
-                        <h1>user Email</h1>
+                        <h1>user name : {name}</h1>
+                        <h1>user Email : {email}</h1>
+                        
+                        <h1>user phon : <input required onChange={hendlsubmitnumber} name='phon' className='input text-white mt-2' /> </h1>
+                        <h1>user address : <input required onChange={hendlsubmitaddress} name='address' className='input text-white mt-2' /> </h1>
+                            
+                        
                     </div>
                     {/* produc details */}
                     <div className='shadow-xl mt-5'>
@@ -71,7 +92,7 @@ const Payment = () => {
                                     <button className='mx-4 btn btn-outline' onClick={pleasehendler}>+</button>
                                 </h1>
                                 <h1>Quentity : {quentity}</h1>
-                                <h1>Price : $ {(dat.price)}</h1>
+                                <h1>Price : $ {Math.floor((dat.price / 100) * 80)}</h1>
                                 <h1>Item Total Price : $ {itemtotalprice}</h1>
                                 <h1>Dalevary chaege : $ {dailyvary}</h1>
                             </div>
@@ -99,11 +120,11 @@ const Payment = () => {
                     </div>
                 </div>
             </div>
-                        <Elements stripe={stripePromise} options={options}>
-                            <Cheakout
-                            catdta={catdta}
-                            />
-                        </Elements>
+            <Elements stripe={stripePromise} options={options}>
+                <Cheakout
+                    catdta={catdta}
+                />
+            </Elements>
         </div>
     );
 };
