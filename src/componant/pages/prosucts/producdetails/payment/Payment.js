@@ -24,7 +24,7 @@ const Payment = () => {
     const ninusehundler = () => {
         setquentity(quentity - 1)
     }
-    const dailyvary = 69
+    const dailyvary = 5
     const itemtotalprice = (dat.price) * quentity
     const totalprice=dailyvary + ((dat.price) * quentity)
     const catdta={
@@ -71,9 +71,9 @@ const Payment = () => {
                                     <button className='mx-4 btn btn-outline' onClick={pleasehendler}>+</button>
                                 </h1>
                                 <h1>Quentity : {quentity}</h1>
-                                <h1>Price : {(dat.price)}</h1>
-                                <h1>Item Total Price : {itemtotalprice}</h1>
-                                <h1>Dalevary chaege : {dailyvary}</h1>
+                                <h1>Price : $ {(dat.price)}</h1>
+                                <h1>Item Total Price : $ {itemtotalprice}</h1>
+                                <h1>Dalevary chaege : $ {dailyvary}</h1>
                             </div>
                         </div>
                     </div>
@@ -88,9 +88,9 @@ const Payment = () => {
                     </div>
                     <div>
                         <p>Order Summary</p>
-                        <p className='flex justify-between'><span>Item Total Price</span><span>{itemtotalprice}</span></p>
-                        <p className='flex justify-between'><span> Delivery Fee</span><span>{dailyvary}</span></p>
-                        <p className='flex justify-between'><span> Total Payment</span><span>{totalprice}</span></p>
+                        <p className='flex justify-between'><span>Item Total Price</span><span>$ {itemtotalprice}</span></p>
+                        <p className='flex justify-between'><span> Delivery Fee</span><span>$ {dailyvary}</span></p>
+                        <p className='flex justify-between'><span> Total Payment</span><span>$ {totalprice}</span></p>
 
                     </div>
 

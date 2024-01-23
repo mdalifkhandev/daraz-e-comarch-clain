@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Cheakout = ({ catdta }) => {
   const [cardError, setCardError] = useState('');
@@ -10,7 +11,7 @@ const Cheakout = ({ catdta }) => {
 
   const stripe = useStripe();
   const elements = useElements();
-  const { totalprice, name,seller,id,quentity } = catdta;
+  const { totalprice, name,seller,id,quentity,img } = catdta;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -80,7 +81,8 @@ const Cheakout = ({ catdta }) => {
         transactionId: paymentIntent.id,
         seller,
         orderId: id,
-        quentity
+        quentity,
+        img
       }
       fetch('http://localhost:5000/payments', {
         method: 'POST',
@@ -95,6 +97,7 @@ const Cheakout = ({ catdta }) => {
           if (data.insertedId) {
             setSuccess('Congrats! your payment completed');
             setTransactionId(paymentIntent.id);
+            toast.success(' Payment Successfully ')
           }
         })
     }
