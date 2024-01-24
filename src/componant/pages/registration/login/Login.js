@@ -5,36 +5,56 @@ import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const {  googlelogin,loginuser } = useContext(Authcontext)
-    const {register,handleSubmit}=useForm()
-    const [errors , seterrors]=useState('')
-    const onSubmit = data =>{
-        const email=data.email
-        const password=data.password
-        loginuser(email,password)
-        .then(resualt=>{
-            console.log(resualt.user);
-            toast.success('Login successfully')
-        })
-        .catch((error) => seterrors(error));
+    const { googlelogin, loginuser } = useContext(Authcontext)
+    const { register, handleSubmit } = useForm()
+    const [errors, seterrors] = useState('')
+    const onSubmit = data => {
+        const email = data.email
+        const password = data.password
+        loginuser(email, password)
+            .then(resualt => {
+                console.log(resualt.user);
+                toast.success('Login successfully')
+            })
+            .catch((error) => seterrors(error));
         //  console.log(email,password)
-        };
+    };
 
 
-    const googlehendler=()=>{
+    const googlehendler = () => {
         googlelogin()
-        .then(resualt=>{
-            console.log(resualt.user);
-            toast.success('Login successfully')
+            .then(resualt => {
+                const name = resualt.user.displayName
+                const email=resualt.user.email
+                saveuser(name,email)
+                // console.log(resualt.user);
+                toast.success('Login successfully')
+            })
+            .catch((error) => seterrors(error));
+    }
+
+
+    const saveuser=(name,email,password)=>{
+        const user={name,email,password}
+        fetch(`http://localhost:5000/users`,{
+            method:'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(user)
         })
-        .catch((error) => seterrors(error));
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            toast.success('User created successfully')
+        })
     }
     return (
-        <div  className='grid place-content-center'>
-            <div  className='w-80 shadow-2xl m-4 p-6'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-            <h1 className='text-4xl font-bold text-center m-3'> Login</h1>
-            <span className="label">Type Your Email</span>
+        <div className='grid place-content-center'>
+            <div className='w-80 shadow-2xl m-4 p-6'>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <h1 className='text-4xl font-bold text-center m-3'> Login</h1>
+                    <span className="label">Type Your Email</span>
                     <input type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
                     <br />
                     <span className="label">Type Your password</span>
@@ -42,12 +62,14 @@ const Login = () => {
                     <br />
                     <input className='btn mt-4 w-full btn-primary' type="submit" />
                     <p className='my-2' >You have not account <Link to='/signup'> Please Signup </Link> </p>
+                    {/* <div className='divider divider-primary'>OR</div> */}
+                    <p className='my-2' ><Link to='/forgatepassword'> Forgate Password </Link> </p>
                     {
-                        errors? <p className='text-red-600 my-3'>{errors.message}</p>:<p></p>
+                        errors ? <p className='text-red-600 my-3'>{errors.message}</p> : <p></p>
                     }
-                    
-            </form>
-            <div className='divider'>
+
+                </form>
+                <div className='divider divider-secondary'>
                     OR
                 </div>
                 <button onClick={googlehendler} className="btn w-full btn-outline">

@@ -11,7 +11,7 @@ const Cheakout = ({ catdta }) => {
 
   const stripe = useStripe();
   const elements = useElements();
-  const { totalprice, name,seller,id,quentity,img,producname,email,phon,address } = catdta;
+  const { totalprice, name, seller, id, quentity, img, producname, email, phon, address } = catdta;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -40,7 +40,7 @@ const Cheakout = ({ catdta }) => {
 
     const { error,
       //  paymentMethod
-       } = await stripe.createPaymentMethod({
+    } = await stripe.createPaymentMethod({
       type: 'card',
       card
     });
@@ -61,8 +61,8 @@ const Cheakout = ({ catdta }) => {
           card: card,
           billing_details: {
             name: name,
-            email:email
-            
+            email: email
+
           },
         },
       },
@@ -77,7 +77,7 @@ const Cheakout = ({ catdta }) => {
       console.log('card info', card);
       // store payment info in the database
       const payment = {
-        price :totalprice,
+        price: totalprice,
         transactionId: paymentIntent.id,
         seller,
         orderId: id,
@@ -107,7 +107,7 @@ const Cheakout = ({ catdta }) => {
         })
     }
     setProcessing(false);
-  
+
 
 
   }

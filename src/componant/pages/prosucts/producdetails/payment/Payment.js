@@ -16,11 +16,11 @@ const stripePromise = loadStripe('pk_test_51NrtkkG1p3nVEVTLlIhN9JauWDQ4WVtWQ7GTO
 
 const Payment = () => {
     const { user } = useContext(Authcontext)
-    const[phon,setphon]=useState('')
-    const[address,setaddress]=useState('')
+    const [phon, setphon] = useState('')
+    const [address, setaddress] = useState('')
     const name = user?.displayName
     const email = user?.email
-    console.log(name, email, user,phon,address);
+    console.log(name, email, user, phon, address);
     const dat = useLoaderData()
     console.log(dat);
     const [quentity, setquentity] = useState(1)
@@ -41,7 +41,7 @@ const Payment = () => {
         id: dat._id,
         quentity,
         img: dat.img,
-        producname:dat.name,
+        producname: dat.name,
         seller: dat.seller,
         name,
         email,
@@ -74,11 +74,11 @@ const Payment = () => {
                     <div className='shadow-xl'>
                         <h1>user name : {name}</h1>
                         <h1>user Email : {email}</h1>
-                        
+
                         <h1>user phon : <input required onChange={hendlsubmitnumber} name='phon' className='input text-white mt-2' /> </h1>
                         <h1>user address : <input required onChange={hendlsubmitaddress} name='address' className='input text-white mt-2' /> </h1>
-                            
-                        
+
+
                     </div>
                     {/* produc details */}
                     <div className='shadow-xl mt-5'>
