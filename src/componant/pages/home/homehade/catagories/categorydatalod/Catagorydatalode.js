@@ -1,10 +1,13 @@
-import React, {  useState } from 'react';
+import React, {  useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Productscard from '../../../../prosucts/productscard/Productscard';
 import Catacaro from '../../catacaro/Catacaro';
 import useTitle from '../../../../../hocks/usetitle/useTitle';
+import Loading from '../../../../../hocks/loading/Loading';
+import { Authcontext } from '../../../../../context/authprovaider/Authprovider';
 
 const Catagorydatalode = () => {
+    const {loading}=useContext(Authcontext)
     const produc = useLoaderData()
     const numberofproduc = produc.length
     // console.log(produc.length);
@@ -15,6 +18,9 @@ const Catagorydatalode = () => {
     const [page, setpage] = useState(0)
     const [prpagdata, setprpagdata] = useState(10)
     const totalpag = Math.ceil(numberofproduc / prpagdata)
+    if(!produc || loading ){
+        return <Loading></Loading>
+    }
     return (
         <div>
             <Catacaro></Catacaro>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Productscard from '../productscard/Productscard';
 import useTitle from '../../../hocks/usetitle/useTitle';
+import Loading from '../../../hocks/loading/Loading';
 // import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 
@@ -49,7 +50,7 @@ const Products = () => {
     // }
     // console.log(totalpag);
     if (loading) {
-        <h1>Loading .... </h1>
+        return <Loading></Loading>
     }
     return (
         <div>

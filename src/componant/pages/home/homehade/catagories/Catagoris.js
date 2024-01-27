@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Cat.css'
 import { Link } from 'react-router-dom';
+import { Authcontext } from '../../../../context/authprovaider/Authprovider';
+import Loading from '../../../../hocks/loading/Loading';
 // import Productscard from '../../../prosucts/productscard/Productscard';
 
 const Catagoris = () => {
 
+    const {loading}=useContext(Authcontext)
+    const [dtaloding,setdtaloding]=useState(true)
     const [data, setdata] = useState()
     // const [categorywicdata, setcategorywicdata] = useState()
     // const [catadata, setcatadata] = useState()
     useEffect(() => {
         fetch(`http://localhost:5000/catagories`)
             .then(res => res.json())
-            .then(data => setdata(data))
+            .then(data => {
+                setdata(data)
+                setdtaloding(false)
+            })
     }, [])
     // useEffect(() => {
     //     fetch(`http://localhost:5000/catagorie-lod-data?category=${catadata}`,
@@ -40,6 +47,9 @@ const Catagoris = () => {
     //     setcatadata(categote)
     // }
     // console.log(categorywicdata);
+    if(loading || dtaloding){
+        return <Loading></Loading>
+    }
     return (
         <div>
 
@@ -59,14 +69,12 @@ const Catagoris = () => {
             <ul className='overover lg:max-h-80 p-3'>
                 {
                     // lg:max-h-80 overflow-y-scroll overover
-                    arr?.map(x => <Link
-                        // value={x}
-                        to={`/category/${x}`}
-                        // onClick={onclkhendler}
-                        key={x}
+                    arr?.map(catagore => <Link
+                        to={`/category/${catagore}`}
+                        key={catagore}
                         className='menu mt-1 p-2 text-center shadow bg-orange-500 rounded-box w-52'
                     >
-                        {x}
+                        {catagore}
                     </Link>)
                 }
             </ul>

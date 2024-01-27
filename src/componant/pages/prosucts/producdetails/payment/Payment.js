@@ -68,15 +68,17 @@ const Payment = () => {
 
     return (
         <div>
-            <div className='grid grid-cols-3 gap-3 my-8'>
+            <div className='grid grid-cols-3 gap-3 my-8 p-4'>
                 {/* user details */}
-                <div className='col-span-2 shadow-xl'>
+                <div className='p-4 col-span-2 shadow-xl'>
                     <div className='shadow-xl'>
-                        <h1>user name : {name}</h1>
-                        <h1>user Email : {email}</h1>
+                        <h1>User Name : {name}</h1>
+                        <h1>User Email : {email}</h1>
 
-                        <h1>user phon : <input required onChange={hendlsubmitnumber} name='phon' className='input text-white mt-2' /> </h1>
-                        <h1>user address : <input required onChange={hendlsubmitaddress} name='address' className='input text-white mt-2' /> </h1>
+                        <h1>User Phon : {phon} </h1>
+                        <h1>User Address : {address} </h1>
+                        <h1>Type your Phonne : <input required onChange={hendlsubmitnumber} name='phon' className='input text-white mt-2' /> </h1>
+                        <h1>Type your Address : <input required onChange={hendlsubmitaddress} name='address' className='input text-white mt-2' /> </h1>
 
 
                     </div>

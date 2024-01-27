@@ -4,7 +4,7 @@ import Loading from '../../../hocks/loading/Loading';
 
 const User = () => {
 
-    const { data, refetch, isLoading } = useQuery({
+    const { data,  isLoading } = useQuery({ //refetch,
         queryKey: ["users"],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/users`);

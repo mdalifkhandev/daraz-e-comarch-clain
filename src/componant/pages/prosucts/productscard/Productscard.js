@@ -12,7 +12,8 @@ const Productscard = ({ produc }) => {
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <h2>Price : $ {price}</h2>
+                    <h2>Price : $ {Math.floor((price/100)*80)}</h2>
+                    <h2>Price : $ <span className='line-through'>{price}</span>  <span className='font-bold ml-5' > 20% OFF</span></h2>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary" ><Link to={`/producdetails/${_id}`}>Details</Link></button>
                     </div>
