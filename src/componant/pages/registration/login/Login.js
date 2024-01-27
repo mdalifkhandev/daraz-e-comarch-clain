@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { googlelogin, loginuser } = useContext(Authcontext)
     const { register, handleSubmit } = useForm()
     const [errors, seterrors] = useState('')
+    const location=useLocation()
+    const navigate=useNavigate()
+    const from = location?.state?.from?.pathname || "/";
     const onSubmit = data => {
         const email = data.email
         const password = data.password
@@ -15,6 +18,8 @@ const Login = () => {
             .then(resualt => {
                 console.log(resualt.user);
                 toast.success('Login successfully')
+                navigate(from, { replace: true });
+                
             })
             .catch((error) => seterrors(error));
         //  console.log(email,password)
@@ -29,6 +34,7 @@ const Login = () => {
                 saveuser(name,email)
                 // console.log(resualt.user);
                 toast.success('Login successfully')
+                navigate(from, { replace: true });
             })
             .catch((error) => seterrors(error));
     }

@@ -1,33 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import Loading from '../../../hocks/loading/Loading';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 
 const Myaddcart = () => {
     // const [cartdata, setcartdata] = useState()
-    const {loading}=useContext(Authcontext)
-    // const [dataloading,setloading]=useState(true)
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/cart`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setcartdata(data);
-    //             setloading(false)
-    //             // console.log(data);
-    //         })
-    // }, [])
-    const { data, isLoading } = useQuery({
-        queryKey: ['order'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/cart`)
-            const data = res.json()
-            return data
-        }
-    })
-    if( loading || isLoading  ){
+    const {loading,user}=useContext(Authcontext)
+    const [dataloading,setloading]=useState(true)
+    const [data,setcartdata]=useState()
+    useEffect(() => {
+        fetch(`http://localhost:5000/cart?email=${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setcartdata(data);
+                setloading(false)
+                // console.log(data);
+            })
+    }, [user.email])
+    // const uri=`http://localhost:5000/cart?email=${user.email}`
+    // console.log(uri);
+    // const { data, isLoading } = useQuery({
+    //     queryKey: ['order',user.email],
+    //     queryFn: async () => {
+    //         const res = await fetch(uri)
+    //         const data = res.json()
+    //         return data
+    //     }
+    // })
+    if( loading || dataloading  ){
         return <Loading></Loading>
     }
+    if(data?.length===0){
+        return <div className='text-center my-40 text-5xl'>
+         <h1>Your Card is Emty</h1>
+         <Link className='link' to='/'>Please go to home And click here</Link>
+        </div>
+    }
+    // console.log(data.length);
     return (
         <div>
             {

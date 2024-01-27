@@ -14,6 +14,7 @@ import Privateroght from "../privaterought/Privateroght";
 import Myorder from "../../pages/profile/myorder/Myorder";
 import Account from "../../pages/profile/account/account/Account";
 import Forgatepassword from "../../pages/registration/forgatepassword/Forgatepassword";
+import Adminrought from "../adminrought/Adminrought";
 
 export const routs = createBrowserRouter(
     [
@@ -63,7 +64,7 @@ export const routs = createBrowserRouter(
                         },
                         {
                             path:'/profile/user',
-                            element:<Privateroght><User></User></Privateroght>
+                            element:<Privateroght><Adminrought><User></User></Adminrought></Privateroght>
                         },
                         {
                             path:'/profile/myaddcart',
@@ -71,7 +72,7 @@ export const routs = createBrowserRouter(
                         },
                         {
                             path:'/profile/myorder',
-                            element:<Myorder></Myorder>
+                            element:<Privateroght><Myorder></Myorder></Privateroght>
                         }
                     ]
                 }

@@ -2,20 +2,29 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import Loading from '../../../hocks/loading/Loading';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
+import { Link } from 'react-router-dom';
 
 const Myorder = () => {
-    const {loading}=useContext(Authcontext)
+    const {loading,user}=useContext(Authcontext)
+    // const uri=`http://localhost:5000/myorder?email=${user?.email}`
+    console.log(user.email);
     const { data, isLoading } = useQuery({
-        queryKey: ['order'],
+        queryKey: ['order',user.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myorder`)
+            const res = await fetch(`http://localhost:5000/myorder?email=${user?.email}`)
             const data = res.json()
             return data
         }
     })
-    console.log(data);
+    // console.log(data);
     if (isLoading || loading) {
         return <Loading></Loading>
+    }
+    if(data?.length === 0){
+        return <div className='text-center my-40 text-5xl'>
+         <h1>Your Card is Emty</h1>
+         <Link className='link' to='/'>Please go to home And click here</Link>
+        </div>
     }
     return (
         <div>
@@ -27,7 +36,7 @@ const Myorder = () => {
                             <h1 className="text-5xl font-bold">{order.producname}</h1>
                             <p className="py-1">Price : {order.price}</p>
                             <p className="py-1">Quentity : {order.quentity}</p>
-                            <p className="py-1">Quentity : {order.seller}</p>
+                            <p className="py-1">Seller : {order.seller}</p>
                             <p className="py-1">Order Id : {order.orderId}</p>
                             <p className="py-1">Transaction Id : {order.transactionId}</p>
                         </div>

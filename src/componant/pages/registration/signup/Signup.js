@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import useTitle from '../../../hocks/usetitle/useTitle';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     useTitle("Signup")
     const { createUser, googlelogin, updateuser } = useContext(Authcontext)
+    const location=useLocation()
+    const navigate=useNavigate()
+    const from = location?.state?.from?.pathname || "/";
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         const name = data.firstName + ' ' + data.lestName
@@ -23,6 +26,7 @@ const Signup = () => {
                         console.log(resualt);
                         toast.success('Signup successfully')
                         saveuser(name,email,password)
+
                     })
                     .catch(error => console.log(error))
                 console.log(resualt);
@@ -54,6 +58,7 @@ const Signup = () => {
         .then(data=>{
             console.log(data);
             toast.success('User created successfully')
+            navigate(from, { replace: true });
         })
     }
 

@@ -2,17 +2,24 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import Loading from '../../../hocks/loading/Loading';
+import useAdmin from '../../../hocks/isadmin/useAdmin';
 
 const Profile = () => {
 
-    const { loading } = useContext(Authcontext)
+    const { loading,user } = useContext(Authcontext)
+    const [isAdmin,isadminloding]=useAdmin(user?.email)
     const menu = <>
+    {
+        isAdmin && <>
         <li><Link to='/profile/user'>User</Link></li>
+        
+        </>
+    }
         <li><Link to='/profile/myaddcart'>My Add Cart</Link></li>
         <li><Link to='/profile/myorder'>My Order</Link></li>
 
     </>
-    if (loading) {
+    if (loading || isadminloding) {
         return <Loading></Loading>
     }
     return (

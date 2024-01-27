@@ -22,10 +22,9 @@ const Productdetails = () => {
         ratingsCount:data.ratingsCount,
         seller:data.seller,
         cardid:data._id,
-        user:{
-            name:user?.displayName,
-            email:user?.email
-        }
+        username:user?.displayName,
+        useremail:user?.email
+        
     }
     // console.log(addcrtdata.user);
     
