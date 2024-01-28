@@ -60,7 +60,7 @@ const Productdetails = () => {
                 <div className='m-4 p-4 rounded-2xl shadow-lg'>
                     <h1 className='font-bold text-3xl'>{data.name}</h1>
                     <h1 className='font-bold text-xl'>{data.ratings} Ratings</h1>
-                    <h1 className='font-bold text-xl'> Brand : {data.seller} </h1>
+                    <h1 className='font-bold text-xl'> Seller : {data.seller} </h1>
                     <h1 className='font-bold text-5xl'> $ {Math.floor((data.price / 100) * 80)}</h1>
                     <h1 className='font-bold text-xl line-through'> $ {data.price}  </h1>
                     <h1 className='font-bold text-xl'> 20%  OFF</h1>

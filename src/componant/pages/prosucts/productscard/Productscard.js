@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Productscard = ({ produc }) => {
     const { name,price,img,category,_id } = produc
-    console.log(_id);
+    // console.log(_id);
    
     return (
         // <div className='grid grid-cols-3'>

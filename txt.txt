@@ -1,0 +1,16 @@
+
+ratings
+: 
+4
+ratingsCount
+: 
+66
+seller
+: 
+"Addidas"
+shipping
+: 
+15
+stock
+: 
+8

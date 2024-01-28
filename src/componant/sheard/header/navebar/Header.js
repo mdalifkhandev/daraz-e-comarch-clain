@@ -10,7 +10,7 @@ const Header = () => {
     const menuitem = <>
 
         <li><a href='/#'>Item 1</a></li>
-        <li><a href='/#'>Item 2</a></li>
+        <li><a href='/sellerpage'>Seller</a></li>
         {
             user ? <li><a href='/profile'>Profile</a></li> :
                 <li><a href='/signup'>Sign UP</a></li>

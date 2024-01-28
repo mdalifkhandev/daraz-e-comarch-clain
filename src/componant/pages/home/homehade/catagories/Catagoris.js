@@ -69,12 +69,13 @@ const Catagoris = () => {
             <ul className='overover lg:max-h-80 p-3'>
                 {
                     // lg:max-h-80 overflow-y-scroll overover
-                    arr?.map(catagore => <Link
+                    arr?.map((catagore,index) => <Link
                         to={`/category/${catagore}`}
-                        key={catagore}
+                        // key={catagore}
+                        key={index}
                         className='menu mt-1 p-2 text-center shadow bg-orange-500 rounded-box w-52'
                     >
-                        {catagore}
+                        {/* <li key={catagore} >{catagore}</li> */}{catagore}
                     </Link>)
                 }
             </ul>

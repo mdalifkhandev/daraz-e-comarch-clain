@@ -15,6 +15,10 @@ import Myorder from "../../pages/profile/myorder/Myorder";
 import Account from "../../pages/profile/account/account/Account";
 import Forgatepassword from "../../pages/registration/forgatepassword/Forgatepassword";
 import Adminrought from "../adminrought/Adminrought";
+import Sellerpage from "../../pages/selleraccount/sellerpage/Sellerpage";
+import Createselleraccount from "../../pages/selleraccount/createselleraccount/Createselleraccount";
+import Addproduct from "../../pages/selleraccount/addproduct/Addproduct";
+import Sellerproducts from "../../pages/selleraccount/sellerproducts/Sellerproducts";
 
 export const routs = createBrowserRouter(
     [
@@ -74,6 +78,24 @@ export const routs = createBrowserRouter(
                             path:'/profile/myorder',
                             element:<Privateroght><Myorder></Myorder></Privateroght>
                         }
+                    ]
+                },
+                {
+                    path:'/sellerpage',
+                    element:<Privateroght><Sellerpage></Sellerpage></Privateroght>,
+                    children:[
+                        {
+                            path:'/sellerpage',
+                            element:<Privateroght><Sellerproducts></Sellerproducts></Privateroght>
+                        },
+                        {
+                            path:'/sellerpage/createdselleraccount',
+                            element:<Privateroght><Createselleraccount></Createselleraccount></Privateroght>
+                        },
+                        {
+                            path:'/sellerpage/addproduct',
+                            element:<Privateroght><Addproduct></Addproduct></Privateroght>
+                        },
                     ]
                 }
             ]
