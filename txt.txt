@@ -1,16 +1,4 @@
 
-ratings
-: 
-4
-ratingsCount
-: 
-66
-seller
-: 
-"Addidas"
-shipping
-: 
-15
-stock
-: 
-8
+git add .
+git commit -m 'admin setup complite'
+git push
