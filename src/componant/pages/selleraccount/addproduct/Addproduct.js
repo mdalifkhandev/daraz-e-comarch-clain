@@ -7,7 +7,7 @@ const Addproduct = () => {
     const {user}=useContext(Authcontext)
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        const category = (data.catagore).toLowerCase()
+        const category = (data.catagore)
         const img = data.img
         const name = data.name
         const price = data.price
@@ -47,7 +47,7 @@ const Addproduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                toast(data.message ? `Product not Added Please seller Login${data.message}` : 'Make Admin successfully' )
+                toast(data.message ? `Product not Added Please seller Login${data.message}` : 'Products added successfully' )
             })
     }
     return (

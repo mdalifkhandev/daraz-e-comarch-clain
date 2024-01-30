@@ -8,9 +8,7 @@ import { Authcontext } from '../../../../context/authprovaider/Authprovider';
 
 
 
-// const stripePromise = loadStripe(process.env.REACT_APP_TOKEN_STRIP);
-const stripePromise = loadStripe('pk_test_51NrtkkG1p3nVEVTLlIhN9JauWDQ4WVtWQ7GTOSj5wjMyrQjjQ7NMU5KyiRYJ3HKn2xXRQU0D9RLyBbdU5LjkKmSb00fo9FLHfW');
-// console.log(process.env.REACT_APP_TOKEN_STRIP);
+const stripePromise = loadStripe(process.env.REACT_APP_TOKEN_STRIP);
 
 
 

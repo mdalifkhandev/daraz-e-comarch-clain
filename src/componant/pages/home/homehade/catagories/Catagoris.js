@@ -37,7 +37,7 @@ const Catagoris = () => {
     data?.forEach(x => {
         // console.log(x.category);
         if (!arr.includes(x.category)) {
-            arr.push(x.category)
+            arr.push((x.category))
         }
     });
     //const arrr=arr.sort(1)

@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 import Loading from '../../../hocks/loading/Loading';
-import Createselleraccount from '../createselleraccount/Createselleraccount';
 
 const Sellerpage = () => {
     const {user}=useContext(Authcontext)
