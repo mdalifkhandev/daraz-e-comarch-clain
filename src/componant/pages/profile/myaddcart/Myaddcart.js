@@ -10,7 +10,7 @@ const Myaddcart = () => {
     const [dataloading,setloading]=useState(true)
     const [data,setcartdata]=useState()
     useEffect(() => {
-        fetch(`http://localhost:5000/cart?email=${user.email}`)
+        fetch(`https://daraz-e-comarch-server.vercel.app/cart?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setcartdata(data);
@@ -46,7 +46,7 @@ const Myaddcart = () => {
                 >
                         <div className="hero">
                             <div className="hero-content flex-col lg:flex-row">
-                                <img alt={data.name} src={data.img} />
+                                <img className='w-72' alt={data.name} src={data.img} />
                                 <div>
                                     <h1 className="text-5xl font-bold">{data.name}</h1>
                                     <p className="my-1">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>

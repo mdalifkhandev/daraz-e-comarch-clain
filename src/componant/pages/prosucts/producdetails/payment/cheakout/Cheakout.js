@@ -15,7 +15,8 @@ const Cheakout = ({ catdta }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://daraz-e-comarch-server.vercel.app/create-payment-intent", {
+    // fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +90,8 @@ const Cheakout = ({ catdta }) => {
         phon,
         address
       }
-      fetch('http://localhost:5000/payments', {
+      fetch('https://daraz-e-comarch-server.vercel.app/payments', {
+      // fetch('http://localhost:5000/payments', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

@@ -9,7 +9,8 @@ const {user}=useContext(Authcontext)
     const { data,refetch,  isLoading } = useQuery({ //refetch,
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users`);
+            const res = await fetch(`https://daraz-e-comarch-server.vercel.app/users`);
+            // const res = await fetch(`http://localhost:5000/users`);
             const data = res.json();
             return data;
         },
@@ -18,7 +19,8 @@ const {user}=useContext(Authcontext)
        return <Loading></Loading>
     }
     const hendlemakeadmin=id=>{
-        const uri=`http://localhost:5000/users/admin/${id}?email=${user?.email}`
+        const uri=`https://daraz-e-comarch-server.vercel.app/users/admin/${id}?email=${user?.email}`
+        // const uri=`http://localhost:5000/users/admin/${id}?email=${user?.email}`
         fetch(uri,{
             method:"PATCH"
         })

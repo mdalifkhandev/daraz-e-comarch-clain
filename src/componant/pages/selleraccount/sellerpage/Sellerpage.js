@@ -9,7 +9,8 @@ const Sellerpage = () => {
     const {data,isLoading}=useQuery({
         queryKey:[`selleruser`,user?.email],
         queryFn: async ()=>{
-            const res=await fetch(`http://localhost:5000/selleruser/${user?.email}`)
+            const res=await fetch(`https://daraz-e-comarch-server.vercel.app/selleruser/${user?.email}`)
+            // const res=await fetch(`http://localhost:5000/selleruser/${user?.email}`)
             const data=res.json()
             return data
         }
@@ -17,9 +18,10 @@ const Sellerpage = () => {
     // console.log(data.role);
     const menu = <>
     {
-        data?.role ?  
-        <li><Link to='/sellerpage/addproduct'>Add New Product</Link></li> :
-        <li><Link to='/sellerpage/createdselleraccount'> Creat seller Account</Link></li>
+        data?.role && <li><Link to='/sellerpage/addproduct'>Add New Product</Link></li> 
+    }
+    {
+        data?.role &&  <li><Link to='/sellerpage/sellerProducts'>Seller Products</Link></li> 
     }
     </>
     if(isLoading){

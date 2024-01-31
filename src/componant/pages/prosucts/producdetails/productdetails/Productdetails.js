@@ -35,7 +35,8 @@ const Productdetails = () => {
 
     const saveuser = (data) => {
 
-        fetch(`http://localhost:5000/cart`, {
+        fetch(`https://daraz-e-comarch-server.vercel.app/cart`, {
+        // fetch(`http://localhost:5000/cart`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -50,6 +51,9 @@ const Productdetails = () => {
     }
     if(loading){
         return <Loading></Loading>
+    }
+    if (!user.emailVerified) {
+        return <h1>Please verify your E-mail</h1>
     }
     return (
         <div>

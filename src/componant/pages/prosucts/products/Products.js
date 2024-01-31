@@ -18,7 +18,8 @@ const Products = () => {
     // console.log(data);
 
     useEffect(() => {
-        const uri = `http://localhost:5000/all-products?page=${page}&size=${prpagdata}`
+        const uri = `https://daraz-e-comarch-server.vercel.app/all-products?page=${page}&size=${prpagdata}`
+        // const uri = `http://localhost:5000/all-products?page=${page}&size=${prpagdata}`
         fetch(uri)//?page=${page}&size=${prpagdata}
             .then(res => res.json())
             .then(data => {

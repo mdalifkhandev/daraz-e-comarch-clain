@@ -34,17 +34,20 @@ export const routs = createBrowserRouter(
                 {
                     path: '/category/:categoryname',
                     element: <Catagorydatalode></Catagorydatalode>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/catagorie-lod-data/${params.categoryname}`)
+                    loader: ({ params }) => fetch(`https://daraz-e-comarch-server.vercel.app/catagorie-lod-data/${params.categoryname}`)
+                    // loader: ({ params }) => fetch(`http://localhost:5000/catagorie-lod-data/${params.categoryname}`)
                 },
                 {
                     path: '/producdetails/:id',
                     element: <Productdetails></Productdetails>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/productdetails/${params.id}`)
+                    loader: ({ params }) => fetch(`https://daraz-e-comarch-server.vercel.app/productdetails/${params.id}`)
+                    // loader: ({ params }) => fetch(`http://localhost:5000/productdetails/${params.id}`)
                 },
                 {
                     path: `/producdetails/payment/:id`,
                     element: <Privateroght><Payment></Payment></Privateroght>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/productdetails/${params.id}`)
+                    loader: ({ params }) => fetch(`https://daraz-e-comarch-server.vercel.app/productdetails/${params.id}`)
+                    // loader: ({ params }) => fetch(`http://localhost:5000/productdetails/${params.id}`)
                 },
                 {
                     path: '/signup',
@@ -86,11 +89,11 @@ export const routs = createBrowserRouter(
                     children:[
                         {
                             path:'/sellerpage',
-                            element:<Privateroght><Sellerproducts></Sellerproducts></Privateroght>
+                            element:<Privateroght><Createselleraccount></Createselleraccount></Privateroght>
                         },
                         {
-                            path:'/sellerpage/createdselleraccount',
-                            element:<Privateroght><Createselleraccount></Createselleraccount></Privateroght>
+                            path:'/sellerpage/sellerProducts',
+                            element:<Privateroght><Sellerproducts></Sellerproducts></Privateroght>
                         },
                         {
                             path:'/sellerpage/addproduct',

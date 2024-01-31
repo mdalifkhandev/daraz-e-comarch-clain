@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { Authcontext } from '../../../context/authprovaider/Authprovider';
 
 const Addproduct = () => {
-    const {user}=useContext(Authcontext)
+    const { user } = useContext(Authcontext)
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         const category = (data.catagore)
@@ -36,7 +36,8 @@ const Addproduct = () => {
     };
 
     const saveproduct = (data) => {
-        const url = `http://localhost:5000/all-products?email=${user.email}`
+        const url = `https://daraz-e-comarch-server.vercel.app/all-products?email=${user.email}`
+        // const url = `http://localhost:5000/all-products?email=${user.email}`
         fetch(url, {
             method: 'POST',
             headers: {
@@ -47,8 +48,13 @@ const Addproduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                toast(data.message ? `Product not Added Please seller Login${data.message}` : 'Products added successfully' )
+                toast(data.message ? `Product not Added Please seller Login${data.message}` : 'Products added successfully')
             })
+    }
+    console.log(user.emailVerified
+    );
+    if (!user.emailVerified) {
+        return <h1>Please verify your E-mail</h1>
     }
     return (
         <div className='m-auto w-4/5'>

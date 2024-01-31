@@ -9,7 +9,8 @@ const Sellerproducts = () => {
     const { data: dbs } = useQuery({
         queryKey: ['selleruser', user.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/selleruser/${user?.email}`)
+            const res = await fetch(`https://daraz-e-comarch-server.vercel.app/selleruser/${user?.email}`)
+            // const res = await fetch(`http://localhost:5000/selleruser/${user?.email}`)
             const data = res.json()
             return data
 
@@ -18,7 +19,8 @@ const Sellerproducts = () => {
     const { data: datas,isLoading } = useQuery({
         queryKey: ['selleruser', dbs?.name],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellerallproducts/${dbs?.name}`)
+            const res = await fetch(`https://daraz-e-comarch-server.vercel.app/sellerallproducts/${dbs?.name}`)
+            // const res = await fetch(`http://localhost:5000/sellerallproducts/${dbs?.name}`)
             const data = res.json()
             return data
 

@@ -25,7 +25,8 @@ const Createselleraccount = () => {
             address,
             role
         }
-        fetch(`http://localhost:5000/selleruser`, {
+        fetch(`https://daraz-e-comarch-server.vercel.app/selleruser`, {
+        // fetch(`http://localhost:5000/selleruser`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

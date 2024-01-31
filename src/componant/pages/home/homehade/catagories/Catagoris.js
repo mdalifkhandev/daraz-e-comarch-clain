@@ -13,7 +13,8 @@ const Catagoris = () => {
     // const [categorywicdata, setcategorywicdata] = useState()
     // const [catadata, setcatadata] = useState()
     useEffect(() => {
-        fetch(`http://localhost:5000/catagories`)
+        // fetch(`http://localhost:5000/catagories`)
+        fetch(`https://daraz-e-comarch-server.vercel.app/catagories`)
             .then(res => res.json())
             .then(data => {
                 setdata(data)

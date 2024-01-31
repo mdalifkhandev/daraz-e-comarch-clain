@@ -42,7 +42,8 @@ const Login = () => {
 
     const saveuser=(name,email,password)=>{
         const user={name,email,password}
-        fetch(`http://localhost:5000/users`,{
+        fetch(`https://daraz-e-comarch-server.vercel.app/users`,{
+        // fetch(`http://localhost:5000/users`,{
             method:'POST',
             headers:{
                 'content-type': 'application/json'
