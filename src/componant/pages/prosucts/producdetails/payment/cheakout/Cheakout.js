@@ -73,9 +73,9 @@ const Cheakout = ({ catdta }) => {
       setCardError(confirmError.message);
       return;
     }
-    console.log(paymentIntent);
+    // console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
-      console.log('card info', card);
+      // console.log('card info', card);
       // store payment info in the database
       const payment = {
         price: totalprice,
@@ -100,7 +100,7 @@ const Cheakout = ({ catdta }) => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          // console.log(data);
           if (data.insertedId) {
             setSuccess('Congrats! your payment completed');
             setTransactionId(paymentIntent.id);

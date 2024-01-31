@@ -51,8 +51,6 @@ const Addproduct = () => {
                 toast(data.message ? `Product not Added Please seller Login${data.message}` : 'Products added successfully')
             })
     }
-    console.log(user.emailVerified
-    );
     if (!user.emailVerified) {
         return <h1>Please verify your E-mail</h1>
     }

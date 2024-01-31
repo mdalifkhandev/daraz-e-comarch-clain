@@ -47,7 +47,7 @@ const Createselleraccount = () => {
                 }
             })
     }
-    console.log(user);
+    // console.log(user);
     return (
         <div className='grid  place-content-center'>
             <div className='w-80 shadow-2xl m-4 p-6'>

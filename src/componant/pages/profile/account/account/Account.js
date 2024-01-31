@@ -8,7 +8,7 @@ const Account = () => {
     const emailverifacation = () => {
         emailverification()
         .then(resualt=>{
-            console.log(resualt.user.emailVerified);
+            // console.log(resualt.user.emailVerified);
         })
 
     }

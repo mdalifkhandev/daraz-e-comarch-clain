@@ -29,7 +29,7 @@ const Products = () => {
                 setLoading(false)
             })
     }, [page, prpagdata])
-    console.log(data);
+    // console.log(data);
     // console.log(numberofproduc);
     // const searchref = useRef()
 

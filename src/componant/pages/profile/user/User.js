@@ -26,7 +26,7 @@ const {user}=useContext(Authcontext)
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             toast(data.message ? data.message : 'Make Admin successfully' )
             refetch()
         })

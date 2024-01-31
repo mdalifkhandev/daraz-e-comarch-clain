@@ -18,9 +18,9 @@ const Payment = () => {
     const [address, setaddress] = useState('')
     const name = user?.displayName
     const email = user?.email
-    console.log(name, email, user, phon, address);
+    // console.log(name, email, user, phon, address);
     const dat = useLoaderData()
-    console.log(dat);
+    // console.log(dat);
     const [quentity, setquentity] = useState(1)
     useTitle(`Payment ${dat.name}`)
     const pleasehendler = () => {

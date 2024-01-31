@@ -12,7 +12,7 @@ const Productdetails = () => {
     // let i=0
     useTitle(data.name)
     const ra = data.ratings
-    console.log(user);
+    // console.log(user);
     const addcrtdata = {
         category:data.category,
         img:data.img,
@@ -30,7 +30,7 @@ const Productdetails = () => {
     
     const hendaleaddtocard =()=> {
         saveuser(addcrtdata)
-        console.log(data);
+        // console.log(data);
     }
 
     const saveuser = (data) => {
@@ -52,9 +52,7 @@ const Productdetails = () => {
     if(loading){
         return <Loading></Loading>
     }
-    if (!user.emailVerified) {
-        return <h1>Please verify your E-mail</h1>
-    }
+   
     return (
         <div>
             <div className='grid lg:grid-cols-3 gap-3 mt-8 shadow-2xl rounded-2xl'>

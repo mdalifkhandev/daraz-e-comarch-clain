@@ -9,7 +9,7 @@ const useAdmin=email=>{
             fetch(`https://daraz-e-comarch-server.vercel.app/users/admin/${email}`)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data);
+                // console.log(data);
                 setisAdmin(data.isAdmin)
                 setisadminloding(false)
             })

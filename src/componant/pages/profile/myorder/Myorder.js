@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Myorder = () => {
     const {loading,user}=useContext(Authcontext)
     // const uri=`http://localhost:5000/myorder?email=${user?.email}`
-    console.log(user.email);
+    // console.log(user.email);
     const { data, isLoading } = useQuery({
         queryKey: ['order',user.email],
         queryFn: async () => {

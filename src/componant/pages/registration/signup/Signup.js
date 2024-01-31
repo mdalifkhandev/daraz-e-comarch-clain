@@ -23,7 +23,7 @@ const Signup = () => {
                 };
                 updateuser(userinfo)
                     .then(resualt => {
-                        console.log(resualt);
+                        // console.log(resualt);
                         toast.success('Signup successfully')
                         saveuser(name,email,password)
 
