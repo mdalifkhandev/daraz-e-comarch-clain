@@ -10,6 +10,7 @@ const Myaddcart = () => {
     const [dataloading,setloading]=useState(true)
     const [data,setcartdata]=useState()
     useEffect(() => {
+        // fetch(`http://localhost:5000/cart?email=${user.email}`)
         fetch(`https://daraz-e-comarch-server.vercel.app/cart?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
