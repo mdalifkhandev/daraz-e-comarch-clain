@@ -20,7 +20,7 @@ Clean, modern UI inspired by Daraz
 
 Tech Stack Used:
 
-Frontend: React.js, Tailwind CSS (or your UI library)
+Frontend: React.js, Tailwind CSS ,Daisy ui
 
 Backend: Node.js, Express.js
 
