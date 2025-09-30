@@ -29,7 +29,7 @@ const Carousel = () => {
     },
   ]
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full max-h-[280px] sm:max-h-[360px] md:max-h-[420px] lg:max-h-[480px] overflow-hidden rounded-xl">
 
       {
         sliderData.map(slide=><Slider

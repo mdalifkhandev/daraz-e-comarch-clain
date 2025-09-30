@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../../pages/home/home/Home";
+import Products from "../../pages/prosucts/products/Products";
 import Catagorydatalode from "../../pages/home/homehade/catagories/categorydatalod/Catagorydatalode";
 import Productdetails from "../../pages/prosucts/producdetails/productdetails/Productdetails";
 import Payment from "../../pages/prosucts/producdetails/payment/Payment";
@@ -30,6 +31,10 @@ export const routs = createBrowserRouter(
                 {
                     path: '/',
                     element: <Home></Home>
+                },
+                {
+                    path: '/products',
+                    element: <Products></Products>
                 },
                 {
                     path: '/category/:categoryname',

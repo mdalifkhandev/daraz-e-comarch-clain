@@ -1,7 +1,8 @@
 import React from 'react';
-import Products from '../../prosucts/products/Products';
-import Catacaro from '../homehade/catacaro/Catacaro';
 import useTitle from '../../../hocks/usetitle/useTitle';
+import Carousel from '../homehade/Carousel/Carousel';
+import Testimonials from '../homehade/Testimonials';
+import BusinessGrowthPlan from '../homehade/BusinessGrowthPlan';
 
 
 const Home = ({search}) => {
@@ -9,8 +10,9 @@ const Home = ({search}) => {
     useTitle(' Home')
     return (
         <div className='mt-8'>
-            <Catacaro></Catacaro>
-            <Products></Products>
+            <Carousel></Carousel>
+            <Testimonials></Testimonials>
+            <BusinessGrowthPlan></BusinessGrowthPlan>
         </div>
     );
 };

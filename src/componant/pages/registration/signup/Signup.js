@@ -64,31 +64,33 @@ const Signup = () => {
     }
 
     return (
-        <div className='grid place-content-center'>
-            <div className='w-80 shadow-2xl m-4 p-6'>
-                <form onSubmit={handleSubmit(onSubmit)}  >
-                    <h1 className='text-4xl font-bold text-center m-3'> Signup</h1>
-                    <span className="label">Type your First name</span>
-                    <input required placeholder='Type your First name' className='input input-primary input-bordered w-full text-white' {...register("firstName")} />
-                    <br />
-                    <span className="label">Type your lest name</span>
-                    <input required placeholder='Type your lest name' className='input input-bordered w-full text-white' {...register("lestName")} />
-                    <br />
-                    <span className="label">Type Your Email</span>
-                    <input required type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
-                    <br />
-                    <span className="label">Type Your password</span>
-                    <input required type='password' placeholder='Type Your password' className='input input-bordered w-full text-white' {...register("password")} />
-                    <br />
-                    <input className='btn mt-4 w-full btn-primary' type="submit" />
-                    <p>Alrady have an account <Link to='/login'> Please login </Link> </p>
-                </form>
-                <div className='divider'>
-                    OR
+        <div className='min-h-[calc(100vh-5rem)] grid place-items-center bg-base-200/30 px-4'>
+            <div className='w-full max-w-4xl rounded-2xl overflow-hidden border border-base-300 shadow-lg bg-base-100 grid md:grid-cols-2'>
+                <div className='hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-primary to-accent text-base-100'>
+                    <div>
+                        <h2 className='text-3xl font-extrabold'>Create your account</h2>
+                        <p className='opacity-90 mt-2'>Join Khan Market and start saving today.</p>
+                    </div>
                 </div>
-                <button onClick={googlehendler} className="btn w-full btn-outline">
-                    CONTINUE WITH GOOGLE
-                </button>
+                <div className='p-6 md:p-8'>
+                    <h1 className='text-2xl font-bold mb-4'>Sign up</h1>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <label className='label'><span className='label-text'>First name</span></label>
+                        <input required placeholder='Your first name' className='input input-bordered w-full' {...register("firstName")} />
+                        <label className='label mt-2'><span className='label-text'>Last name</span></label>
+                        <input required placeholder='Your last name' className='input input-bordered w-full' {...register("lestName")} />
+                        <label className='label mt-2'><span className='label-text'>Email</span></label>
+                        <input required type='email' placeholder='you@example.com' className='input input-bordered w-full' {...register("email")} />
+                        <label className='label mt-2'><span className='label-text'>Password</span></label>
+                        <input required type='password' placeholder='••••••••' className='input input-bordered w-full' {...register("password")} />
+                        <button className='btn mt-4 w-full btn-primary' type="submit">Create account</button>
+                    </form>
+                    <div className='divider'>OR</div>
+                    <button onClick={googlehendler} className="btn w-full btn-outline">Continue with Google</button>
+                    <p className='mt-4 text-sm text-center'>
+                        Already have an account? <Link className='link link-primary' to='/login'>Sign in</Link>
+                    </p>
+                </div>
             </div>
         </div>
     );

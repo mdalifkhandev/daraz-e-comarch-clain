@@ -65,66 +65,68 @@ const Payment = () => {
     };
 
     return (
-        <div>
-            <div className='grid grid-cols-3 gap-3 my-8 p-4'>
-                {/* user details */}
-                <div className='p-4 col-span-2 shadow-xl'>
-                    <div className='shadow-xl'>
-                        <h1>User Name : {name}</h1>
-                        <h1>User Email : {email}</h1>
-
-                        <h1>User Phon : {phon} </h1>
-                        <h1>User Address : {address} </h1>
-                        <h1>Type your Phonne : <input required onChange={hendlsubmitnumber} name='phon' className='input text-white mt-2' /> </h1>
-                        <h1>Type your Address : <input required onChange={hendlsubmitaddress} name='address' className='input text-white mt-2' /> </h1>
-
-
+        <div className='max-w-7xl mx-auto px-4 py-6'>
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-6'>
+                {/* left: product + user */}
+                <div className='lg:col-span-7'>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-4'>
+                        <div className='flex items-start gap-4'>
+                            <img alt={dat.name} className='w-32 h-32 object-cover rounded-lg border' src={dat.img} />
+                            <div className='flex-1'>
+                                <h1 className='font-semibold text-lg'>{dat.name}</h1>
+                                <div className='mt-2 flex items-center gap-2'>
+                                    <button disabled={quentity === 1} onClick={ninusehundler} className='btn btn-outline btn-sm'>-</button>
+                                    <span className='font-semibold'>{quentity}</span>
+                                    <button className='btn btn-outline btn-sm' onClick={pleasehendler}>+</button>
+                                </div>
+                                <div className='mt-2 text-sm opacity-80'>Seller: {dat.seller}</div>
+                            </div>
+                            <div className='text-right'>
+                                <div className='text-2xl font-extrabold text-primary'>$ {Math.floor((dat.price / 100) * 80)}</div>
+                                <div className='line-through text-base-300'>$ {dat.price}</div>
+                            </div>
+                        </div>
                     </div>
-                    {/* produc details */}
-                    <div className='shadow-xl mt-5'>
-                        <div className='flex shadow-xl'>
-                            <img alt='' className='w-44 rounded-xl' src={dat.img} />
-                            <div className='ml-5 my-2 p-5'>
-                                <h1>{dat.name}</h1>
-                                <h1>
-                                    <button disabled={quentity === 1} onClick={ninusehundler} className='mx-4 btn btn-outline'> -</button>
-                                    {quentity}
-                                    <button className='mx-4 btn btn-outline' onClick={pleasehendler}>+</button>
-                                </h1>
-                                <h1>Quentity : {quentity}</h1>
-                                <h1>Price : $ {Math.floor((dat.price / 100) * 80)}</h1>
-                                <h1>Item Total Price : $ {itemtotalprice}</h1>
-                                <h1>Dalevary chaege : $ {dailyvary}</h1>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-4 mt-4'>
+                        <h2 className='font-semibold mb-3'>Shipping details</h2>
+                        <div className='grid sm:grid-cols-2 gap-3'>
+                            <div>
+                                <label className='label'><span className='label-text'>Full name</span></label>
+                                <input value={name || ''} readOnly className='input input-bordered w-full' />
+                            </div>
+                            <div>
+                                <label className='label'><span className='label-text'>Email</span></label>
+                                <input value={email || ''} readOnly className='input input-bordered w-full' />
+                            </div>
+                            <div>
+                                <label className='label'><span className='label-text'>Phone</span></label>
+                                <input required onChange={hendlsubmitnumber} name='phon' className='input input-bordered w-full' placeholder='01XXXXXXXXX' />
+                            </div>
+                            <div className='sm:col-span-2'>
+                                <label className='label'><span className='label-text'>Address</span></label>
+                                <input required onChange={hendlsubmitaddress} name='address' className='input input-bordered w-full' placeholder='House, Road, City' />
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* payment details */}
-                <div className='shadow-xl  divide-y-4 p-5 m-5'>
-                    <div className='shadow-xl '>
-                        <p>Discount and Payment</p>
-                        <p className='flex justify-between'><span> Voucher</span><span><small>nathing</small></span></p>
-                        <p className='flex justify-between mb-8'><span>Promo Code</span><span><small>nathing</small></span></p>
-
-                    </div>
-                    <div>
-                        <p>Order Summary</p>
-                        <p className='flex justify-between'><span>Item Total Price</span><span>$ {itemtotalprice}</span></p>
-                        <p className='flex justify-between'><span> Delivery Fee</span><span>$ {dailyvary}</span></p>
-                        <p className='flex justify-between'><span> Total Payment</span><span>$ {totalprice}</span></p>
-
-                    </div>
-
-
-                    <div>
+                {/* right: summary + stripe */}
+                <div className='lg:col-span-5'>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-5 sticky top-24'>
+                        <h2 className='font-semibold mb-3'>Order Summary</h2>
+                        <div className='space-y-2 text-sm'>
+                            <div className='flex justify-between'><span>Items total</span><span>$ {itemtotalprice}</span></div>
+                            <div className='flex justify-between'><span>Delivery fee</span><span>$ {dailyvary}</span></div>
+                            <div className='divider my-2'></div>
+                            <div className='flex justify-between font-semibold'><span>Total</span><span>$ {totalprice}</span></div>
+                        </div>
+                        <div className='mt-4'>
+                            <Elements stripe={stripePromise} options={options}>
+                                <Cheakout catdta={catdta} />
+                            </Elements>
+                        </div>
                     </div>
                 </div>
             </div>
-            <Elements stripe={stripePromise} options={options}>
-                <Cheakout
-                    catdta={catdta}
-                />
-            </Elements>
         </div>
     );
 };

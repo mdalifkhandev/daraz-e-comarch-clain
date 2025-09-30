@@ -36,37 +36,41 @@ const {user}=useContext(Authcontext)
         })
     }
     return (
-        <div>
-
-
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>E-mail</th>
-                            <th>Passwoed</th>
-                            <th>role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            data?.map((user, index) => <tr className="bg-red-300" key={index}>
-                                <th>{index + 1}</th>
-                                <td>{user.name ? user.name : <p>Name</p>}</td>
-                                <td>{user?.email}</td>
-                                <td>{user?.password ? user.password : <p>Password</p>}</td>
-                                <td>{user?.role ? user.role : <button className='btn btn-sm  btn-primary' onClick={()=>hendlemakeadmin(user._id)} >Make Admin </button>}</td>
-                            </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+        <div className=' w-full min-h-[calc(100vh-12rem)]'>
+            <div className='flex items-center justify-between'>
+                <h2 className='text-xl font-bold'>Users</h2>
+                <div className='text-sm opacity-70'>Total: {data?.length || 0}</div>
             </div>
-
-
+            <div className="rounded-xl border border-base-200 bg-base-100 p-0 overflow-hidden w-full">
+                <div className="overflow-x-auto w-full">
+                    <table className="table table-zebra">
+                        <thead className='bg-base-200'>
+                            <tr>
+                                <th className='w-16'>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th className='w-40 text-right'>Role / Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data?.map((u, index) => (
+                                <tr key={u._id || index}>
+                                    <td>{index + 1}</td>
+                                    <td>{u.name || '—'}</td>
+                                    <td className='truncate max-w-[280px] md:max-w-none'>{u.email}</td>
+                                    <td className='text-right'>
+                                        {u.role === 'admin' ? (
+                                            <span className='badge badge-primary'>Admin</span>
+                                        ) : (
+                                            <button className='btn btn-primary btn-sm' onClick={()=>hendlemakeadmin(u._id)}>Make Admin</button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };
