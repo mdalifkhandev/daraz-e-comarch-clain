@@ -31,25 +31,25 @@ const Sellerproducts = () => {
         return <Loading></Loading>
     }
     return (
-        <div className='grid mt-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3'>
-            {
-                datas?.map(data => <div key={data._id}>
-                    {/* <div className='grid grid-cols-3'> */}
-                        <div className="card w-auto bg-white shadow-2xl mt-3">
-                            <figure><img src={data?.img} alt='{category}' className=' h-80 w-80 mt-8 rounded-xl shadow-xl' /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">{data?.name}</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <h2>Price : $ {Math.floor((data?.price / 100) * 80)}</h2>
-                                <h2>Price : $ <span className='line-through'>{data?.price}</span>  <span className='font-bold ml-5' > 20% OFF</span></h2>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary" ><Link to={`/producdetails/${data._id}`}>Details</Link></button>
-                                </div>
+        <div>
+            <div className='flex items-center justify-between mt-2'>
+                <h2 className='text-xl font-bold'>Your products</h2>
+                <Link to='/sellerpage/addproduct' className='btn btn-primary btn-sm'>Add new</Link>
+            </div>
+            <div className='grid mt-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4'>
+                {datas?.map(data => (
+                    <div key={data._id} className="card bg-base-100 border border-base-200 shadow-sm">
+                        <figure className='p-3'><img src={data?.img} alt={data?.name} className='h-48 w-full object-cover rounded-xl' /></figure>
+                        <div className="card-body">
+                            <h3 className="font-semibold line-clamp-2">{data?.name}</h3>
+                            <div className='text-sm opacity-80'>${Math.floor((data?.price / 100) * 80)} <span className='line-through ml-2'>${data?.price}</span></div>
+                            <div className="card-actions justify-end mt-2">
+                                <Link className="btn btn-ghost btn-sm" to={`/producdetails/${data._id}`}>View</Link>
                             </div>
-                        {/* </div> */}
+                        </div>
                     </div>
-                </div>)
-            }
+                ))}
+            </div>
         </div>
     );
 };

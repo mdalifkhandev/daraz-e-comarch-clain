@@ -67,14 +67,14 @@ const Catagoris = () => {
                     </button>)
                 }
             </div> */}
-            <ul className='overover lg:max-h-80 p-3'>
+            <ul className='overover lg:max-h-80 p-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-1 gap-2'>
                 {
                     // lg:max-h-80 overflow-y-scroll overover
                     arr?.map((catagore,index) => <Link
                         to={`/category/${catagore}`}
                         // key={catagore}
                         key={index}
-                        className='menu mt-1 p-2 text-center shadow bg-orange-500 rounded-box w-52'
+                        className='menu mt-1 p-2 text-center shadow bg-primary text-primary-content rounded-box w-full'
                     >
                         {/* <li key={catagore} >{catagore}</li> */}{catagore}
                     </Link>)

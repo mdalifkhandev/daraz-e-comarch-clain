@@ -28,30 +28,34 @@ const Myorder = () => {
         </div>
     }
     return (
-        <div>
-            {
-                data?.map(order => <div key={order._id} className="hero">
-                    <div className="hero-content flex-col lg:flex-row">
-                        <img alt={order.img} className='rounded-2xl shadow-2xl' src={order.img} />
-                        <div className='shadow-2xl p-3 rounded-2xl'>
-                            <h1 className="text-5xl font-bold">{order.producname}</h1>
-                            <p className="py-1">Price : {order.price}</p>
-                            <p className="py-1">Quentity : {order.quentity}</p>
-                            <p className="py-1">Seller : {order.seller}</p>
-                            <p className="py-1">Order Id : {order.orderId}</p>
-                            <p className="py-1">Transaction Id : {order.transactionId}</p>
+        <div className='space-y-4 w-full min-h-[calc(100vh-12rem)]'>
+            <h2 className='text-xl font-bold'>My Orders</h2>
+            <div className='grid gap-4 grid-cols-1 lg:grid-cols-2'>
+                {data?.map(order => (
+                    <div key={order._id} className='rounded-xl border border-base-200 bg-base-100 p-4'>
+                        <div className='flex items-start gap-4'>
+                            <img alt={order.producname} className='w-28 h-28 object-cover rounded-lg border' src={order.img} />
+                            <div className='flex-1'>
+                                <h3 className='font-semibold'>{order.producname}</h3>
+                                <div className='text-sm mt-1'>Qty: {order.quentity} • Seller: {order.seller}</div>
+                                <div className='text-sm opacity-80'>Order: {order.orderId}</div>
+                                <div className='text-sm opacity-80'>TXN: {order.transactionId}</div>
+                            </div>
+                            <div className='text-right'>
+                                <div className='font-extrabold text-primary'>${order.price}</div>
+                            </div>
                         </div>
-                        <div className='shadow-2xl p-3 rounded-2xl'>
-                            <h1 className="text-2xl w-52 font-bold">Payment details</h1>
-                            <p className="py-1">Name : {order.name}</p>
-                            <p className="py-1">E-mail : {order.email}</p>
-                            <p className="py-1">Adddress : {order.address}</p>
-                            <p className="py-1">Phone : {order.phon}</p>
-                            
+                        <div className='mt-3 text-sm grid sm:grid-cols-2 gap-2'>
+                            <div>
+                                <div className='font-medium'>Shipping</div>
+                                <div>{order.name}</div>
+                                <div className='opacity-80'>{order.address}</div>
+                                <div className='opacity-80'>{order.email} • {order.phon}</div>
+                            </div>
                         </div>
                     </div>
-                </div>)
-            }
+                ))}
+            </div>
         </div>
     );
 };

@@ -49,26 +49,28 @@ const Createselleraccount = () => {
     }
     // console.log(user);
     return (
-        <div className='grid  place-content-center'>
-            <div className='w-80 shadow-2xl m-4 p-6'>
-                <form onSubmit={handleSubmit(onSubmit)}  >
-                    <h1 className='text-4xl font-bold text-center m-3'> Create Seller Account</h1>
-                    <span className="label">Your Name</span>
-                    <input readOnly placeholder='Type your First name' className='input input-primary input-bordered w-full text-white' value={user?.displayName} />
-                    <br />
-                    <span className="label">Your Email</span>
-                    <input readOnly type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' value={user?.email} />
-                    <br />
-                    <span className="label">Your Phone Number</span>
-                    <input required type='number' placeholder='Type Your Number' className='input input-bordered w-full text-white' {...register("number", { minLength: 10, maxLength: 12 })} />
-                    <br />
-                    <span className="label">Your Address</span>
-                    <input required type='text' placeholder='Type Your Address' className='input input-bordered w-full text-white' {...register("address")} />
-                    <br />
-                    <input className='btn mt-4 w-full btn-primary' type="submit" />
-                </form>
-
-
+        <div className='min-h-[calc(100vh-5rem)] grid place-items-center bg-base-200/30 px-4'>
+            <div className='w-full max-w-3xl rounded-2xl overflow-hidden border border-base-300 shadow-lg bg-base-100 grid md:grid-cols-2'>
+                <div className='hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-secondary to-primary text-base-100'>
+                    <div>
+                        <h2 className='text-3xl font-extrabold'>Become a Seller</h2>
+                        <p className='opacity-90 mt-2'>Grow your business with Khan Market.</p>
+                    </div>
+                </div>
+                <div className='p-6 md:p-8'>
+                    <h1 className='text-2xl font-bold mb-4'>Create Seller Account</h1>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <label className='label'><span className='label-text'>Your name</span></label>
+                        <input readOnly className='input input-bordered w-full' value={user?.displayName || ''} />
+                        <label className='label mt-2'><span className='label-text'>Your email</span></label>
+                        <input readOnly type='email' className='input input-bordered w-full' value={user?.email || ''} />
+                        <label className='label mt-2'><span className='label-text'>Phone number</span></label>
+                        <input required type='tel' placeholder='01XXXXXXXXX' className='input input-bordered w-full' {...register("number", { minLength: 10, maxLength: 12 })} />
+                        <label className='label mt-2'><span className='label-text'>Address</span></label>
+                        <input required type='text' placeholder='Shop/House, Road, City' className='input input-bordered w-full' {...register("address")} />
+                        <button className='btn mt-4 w-full btn-primary' type="submit">Create seller</button>
+                    </form>
+                </div>
             </div>
         </div>
     );

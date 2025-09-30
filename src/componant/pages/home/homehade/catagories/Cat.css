@@ -6,3 +6,10 @@
 .overover::-webkit-scrollbar {
     display: none;
 }
+
+@media (max-width: 1024px){
+    .overover{
+        height: auto;
+        overflow-y: visible;
+    }
+}

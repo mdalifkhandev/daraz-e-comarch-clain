@@ -55,33 +55,38 @@ const Addproduct = () => {
         return <h1>Please verify your E-mail</h1>
     }
     return (
-        <div className='m-auto w-4/5'>
-            <div className='   place-content-center shadow-2xl m-4 p-6'>
-                <form onSubmit={handleSubmit(onSubmit)}  >
-                    <h1 className='text-4xl font-bold text-center m-3'> New product add</h1>
-                    <span className="label">Product Name Name</span>
-                    <input required type='text' placeholder='Type product name' className='input input-primary input-bordered w-full text-white' {...register("name")} />
-
-                    <span className="label">Product catagore</span>
-                    <input required type='text' placeholder='Type catagori' className='input input-bordered w-full text-white' {...register("catagore")} />
-
-                    <span className="label">Seller name</span>
-                    <input readOnly type='text' value={user.displayName} placeholder='Type Seller Name' className='input input-bordered w-full text-white' {...register("seller")} />
-
-
-                    <span className="label">img URL</span>
-                    <input required type='text' placeholder='image URL' className='input input-bordered w-full text-white' {...register("img")} />
-
-                    <span className="label">product quantity</span>
-                    <input required type='number' placeholder='Quentity' className='input input-bordered w-full text-white' {...register("quantity")} />
-
-                    <span className="label">product price</span>
-                    <input required type='number' onFocus={this} placeholder='Price' className='input input-bordered w-full text-white' {...register("price")} />
-
-                    <input className='btn mt-4 w-full btn-primary' type="submit" />
+        <div className='max-w-4xl mx-auto'>
+            <div className='rounded-2xl border border-base-300 shadow-lg p-6 mt-4 bg-base-100'>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <h1 className='text-2xl font-bold mb-4 text-center'>Add new product</h1>
+                    <div className='grid sm:grid-cols-2 gap-4'>
+                        <div className='sm:col-span-2'>
+                            <label className='label'><span className='label-text'>Product name</span></label>
+                            <input required type='text' placeholder='Type product name' className='input input-bordered w-full' {...register("name")} />
+                        </div>
+                        <div>
+                            <label className='label'><span className='label-text'>Category</span></label>
+                            <input required type='text' placeholder='e.g. phone, laptop' className='input input-bordered w-full' {...register("catagore")} />
+                        </div>
+                        <div>
+                            <label className='label'><span className='label-text'>Seller name</span></label>
+                            <input readOnly type='text' value={user.displayName} className='input input-bordered w-full' {...register("seller")} />
+                        </div>
+                        <div className='sm:col-span-2'>
+                            <label className='label'><span className='label-text'>Image URL</span></label>
+                            <input required type='text' placeholder='https://...' className='input input-bordered w-full' {...register("img")} />
+                        </div>
+                        <div>
+                            <label className='label'><span className='label-text'>Quantity</span></label>
+                            <input required type='number' placeholder='Quantity' className='input input-bordered w-full' {...register("quantity")} />
+                        </div>
+                        <div>
+                            <label className='label'><span className='label-text'>Price</span></label>
+                            <input required type='number' placeholder='Price' className='input input-bordered w-full' {...register("price")} />
+                        </div>
+                    </div>
+                    <button className='btn mt-6 w-full btn-primary' type="submit">Save product</button>
                 </form>
-
-
             </div>
         </div>
     );
