@@ -34,26 +34,55 @@ const Account = () => {
     }
 
     return (
-        <div>
-            <h1>User Name : {user.displayName}</h1>
-            <h1>User Email : {user.email}</h1>
-            {user?.emailVerified ? (
+        <div className='w-full'>
+            <div className='rounded-2xl border border-base-200 bg-base-100 p-6'>
+                <div className='flex items-start gap-4'>
+                    <div className="avatar placeholder">
+                        <div className="bg-primary/10 text-primary rounded-full w-16">
+                            <span className='text-lg font-bold'>
+                                {(user?.displayName || 'U')?.split(' ')?.map(p=>p[0]).slice(0,2).join('')}
+                            </span>
+                        </div>
+                    </div>
+                    <div className='flex-1'>
+                        <div className='flex items-center gap-2'>
+                            <h1 className='text-2xl font-bold'>{user.displayName || 'User'}</h1>
+                            {user?.emailVerified ? (
+                                <span className='badge badge-success'>Verified</span>
+                            ) : (
+                                <span className='badge badge-warning'>Not verified</span>
+                            )}
+                        </div>
+                        <div className='opacity-80'>{user.email}</div>
 
-                <button className=" my-5 bg-green-600 rounded-xl p-2  text-white">
-                    Your Email Verifide
-                </button>
+                        <div className='mt-4 flex flex-wrap gap-2'>
+                            {user?.emailVerified ? (
+                                <button className="btn btn-success btn-sm" disabled> Email verified </button>
+                            ) : (
+                                <button onClick={emailverifacation} className="btn btn-primary btn-sm">Verify email</button>
+                            )}
+                            <button onClick={signoutuser} className='btn btn-ghost btn-sm'>Sign out</button>
+                            <button onClick={deleteusehendler} className='btn btn-error btn-sm'>Delete account</button>
+                        </div>
+                    </div>
+                </div>
 
-            ) : (
-
-                <button onClick={emailverifacation} className="btn my-5 btn-primary">
-                    Email Verifecation
-                </button>
-
-            )}
-            <br/>
-            <button onClick={deleteusehendler} className='btn btn-warning'>Delete User</button>
-            <br/>
-            <button onClick={signoutuser} className='btn my-3 btn-primary'>Sign Out user</button>
+                <div className='divider'></div>
+                <div className='grid sm:grid-cols-2 gap-4'>
+                    <div className='rounded-xl border border-base-200 p-4'>
+                        <div className='font-semibold mb-1'>Security tips</div>
+                        <ul className='list-disc ml-4 text-sm opacity-80 space-y-1'>
+                            <li>Use a strong password and never share it.</li>
+                            <li>Enable email verification to protect your account.</li>
+                        </ul>
+                    </div>
+                    <div className='rounded-xl border border-base-200 p-4'>
+                        <div className='font-semibold mb-1'>Profile info</div>
+                        <div className='text-sm opacity-80'>Name: {user.displayName || '—'}</div>
+                        <div className='text-sm opacity-80'>Email: {user.email || '—'}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

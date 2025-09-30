@@ -5,10 +5,10 @@ import Carousel from '../Carousel/Carousel';
 const Catacaro = () => {
     return (
         <div>
-            <div className="hero  ">
-                <div className="hero-content flex-col lg:flex-row">
+            <div className="hero">
+                <div className="hero-content flex-col lg:flex-row gap-4 w-full">
                     <Catagoris></Catagoris>
-                    <div>
+                    <div className='w-full'>
                         <Carousel></Carousel>
                     </div>
                 </div>

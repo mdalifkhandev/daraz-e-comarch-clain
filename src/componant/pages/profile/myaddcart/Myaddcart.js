@@ -40,25 +40,26 @@ const Myaddcart = () => {
     }
     // console.log(data.length);
     return (
-        <div>
-            {
-                data?.map(data =><div
-                key={data._id}
-                >
-                        <div className="hero">
-                            <div className="hero-content flex-col lg:flex-row">
-                                <img className='w-72' alt={data.name} src={data.img} />
-                                <div>
-                                    <h1 className="text-5xl font-bold">{data.name}</h1>
-                                    <p className="my-1">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                    <p className="font-bold text-xl my-1">Price : $ {Math.floor((data.price/100)*80)}</p>
-                                    <p className="font-bold text-xl line-through my-1">$ {data.price}</p>
-                                    <button className="btn btn-primary"><Link to={`/producdetails/${data.cardid}`}>Details</Link></button>
-                                </div>
+        <div className='space-y-4 w-full min-h-[calc(100vh-12rem)]'>
+            <h2 className='text-xl font-bold'>My Cart</h2>
+            <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+                {data?.map(item => (
+                    <div key={item._id} className='rounded-xl border border-base-200 bg-base-100 p-3'>
+                        <img className='w-full h-40 object-cover rounded-lg' alt={item.name} src={item.img} />
+                        <div className='mt-3'>
+                            <h3 className='font-semibold line-clamp-2'>{item.name}</h3>
+                            <div className='text-sm mt-1'>
+                                <span className='font-bold text-primary'>$ {Math.floor((item.price/100)*80)}</span>
+                                <span className='line-through ml-2'>$ {item.price}</span>
+                            </div>
+                            <div className='mt-3 flex justify-between'>
+                                <Link className='btn btn-ghost btn-sm' to={`/producdetails/${item.cardid}`}>Details</Link>
+                                <Link className='btn btn-primary btn-sm' to={`/producdetails/payment/${item.cardid}`}>Buy now</Link>
                             </div>
                         </div>
-                    </div>)
-            }
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

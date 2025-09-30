@@ -57,33 +57,35 @@ const Login = () => {
         })
     }
     return (
-        <div className='grid place-content-center'>
-            <div className='w-80 shadow-2xl m-4 p-6'>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className='text-4xl font-bold text-center m-3'> Login</h1>
-                    <span className="label">Type Your Email</span>
-                    <input type='email' placeholder='Type Your Email' className='input input-bordered w-full text-white' {...register("email")} />
-                    <br />
-                    <span className="label">Type Your password</span>
-                    <input type='password' placeholder='Type Your password' className='input input-bordered w-full text-white' {...register("password")} />
-                    <br />
-                    <input className='btn mt-4 w-full btn-primary' type="submit" />
-                    <p className='my-2' >You have not account <Link to='/signup'> Please Signup </Link> </p>
-                    {/* <div className='divider divider-primary'>OR</div> */}
-                    <p className='my-2' ><Link to='/forgatepassword'> Forgate Password </Link> </p>
-                    {
-                        errors ? <p className='text-red-600 my-3'>{errors.message}</p> : <p></p>
-                    }
-
-                </form>
-                <div className='divider divider-secondary'>
-                    OR
-                </div>
-                <button onClick={googlehendler} className="btn w-full btn-outline">
-                    CONTINUE WITH GOOGLE
-                </button>
-            </div>
-        </div>
+		<div className='min-h-[calc(100vh-5rem)] grid place-items-center bg-base-200/30 px-4'>
+			<div className='w-full max-w-4xl rounded-2xl overflow-hidden border border-base-300 shadow-lg bg-base-100 grid md:grid-cols-2'>
+				<div className='hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-neutral to-neutral/80 text-base-100'>
+					<div>
+						<h2 className='text-3xl font-extrabold'>Welcome back</h2>
+						<p className='opacity-90 mt-2'>Login to continue shopping and track your orders.</p>
+					</div>
+				</div>
+				<div className='p-6 md:p-8'>
+					<h1 className='text-2xl font-bold mb-4'>Login</h1>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<label className='label'><span className='label-text'>Email</span></label>
+						<input type='email' placeholder='you@example.com' className='input input-bordered w-full' {...register("email")} />
+						<label className='label mt-2'><span className='label-text'>Password</span></label>
+						<input type='password' placeholder='••••••••' className='input input-bordered w-full' {...register("password")} />
+						<button className='btn mt-4 w-full btn-primary' type="submit">Sign in</button>
+					</form>
+					<div className='flex items-center justify-between mt-2 text-sm'>
+						<Link to='/forgatepassword' className='link link-hover'>Forgot password?</Link>
+					</div>
+					{errors ? <p className='text-error my-3'>{errors.message}</p> : null}
+					<div className='divider'>OR</div>
+					<button onClick={googlehendler} className="btn w-full btn-outline">Continue with Google</button>
+					<p className='mt-4 text-sm text-center'>
+						New here? <Link className='link link-primary' to='/signup'>Create an account</Link>
+					</p>
+				</div>
+			</div>
+		</div>
     );
 };
 

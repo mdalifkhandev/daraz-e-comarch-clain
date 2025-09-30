@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import Breadcrumbs from '../../../../sheard/breadcrumbs/Breadcrumbs';
 import { FaCartArrowDown, FaRegStar, FaStar } from "react-icons/fa";
 import useTitle from '../../../../hocks/usetitle/useTitle';
 import toast from 'react-hot-toast';
@@ -9,6 +10,7 @@ import Loading from '../../../../hocks/loading/Loading'
 const Productdetails = () => {
     const data = useLoaderData()
     const {user,loading}=useContext(Authcontext)
+    const navigate = useNavigate()
     // let i=0
     useTitle(data.name)
     const ra = data.ratings
@@ -29,8 +31,19 @@ const Productdetails = () => {
     // console.log(addcrtdata.user);
     
     const hendaleaddtocard =()=> {
+        if(!user){
+            navigate('/login')
+            return
+        }
         saveuser(addcrtdata)
-        // console.log(data);
+    }
+
+    const handleBuyNow = () => {
+        if(!user){
+            navigate('/login')
+            return
+        }
+        navigate(`/producdetails/payment/${data._id}`)
     }
 
     const saveuser = (data) => {
@@ -54,80 +67,111 @@ const Productdetails = () => {
     }
    
     return (
-        <div>
-            <div className='grid lg:grid-cols-3 gap-3 mt-8 shadow-2xl rounded-2xl'>
-                <div className=' mx-3'>
-                    <img className='overflow-hidden hover:scale-150 cursor-pointer rounded-2xl m-4 shadow-2xl' src={data.img} alt={data.name} />
-                </div>
-                <div className='m-4 p-4 rounded-2xl shadow-lg'>
-                    <h1 className='font-bold text-3xl'>{data.name}</h1>
-                    <h1 className='font-bold text-xl'>{data.ratings} Ratings</h1>
-                    <h1 className='font-bold text-xl'> Seller : {data.seller} </h1>
-                    <h1 className='font-bold text-5xl'> $ {Math.floor((data.price / 100) * 80)}</h1>
-                    <h1 className='font-bold text-xl line-through'> $ {data.price}  </h1>
-                    <h1 className='font-bold text-xl'> 20%  OFF</h1>
-                    <div className='grid grid-cols-2 gap-4 my-10'>
-                        <button disabled={!user} className='btn btn-primary'><Link to={`/producdetails/payment/${data._id}`}>Buy Now</Link></button>
-                        
-                        <button disabled={!user} className='btn btn-outline btn-success'  onClick={hendaleaddtocard} >Add To Card <FaCartArrowDown className='text-2xl text-black inline' /></button>
+        <div className='mt-6'>
+            <Breadcrumbs items={[{ label: 'Products', to: '/'} , { label: data.category, to: `/category/${data.category}`}, { label: data.name }]} />
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-6'>
+                {/* left: gallery */}
+                <div className='lg:col-span-5'>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-4'>
+                        <img className='w-full max-h-[520px] object-cover rounded-lg' src={data.img} alt={data.name} />
+                        <div className='grid grid-cols-5 gap-3 mt-3'>
+                            {[...Array(5)].map((_,i)=> (
+                                <img key={i} className='h-16 w-full object-cover rounded-md border border-base-200' src={data.img} alt={data.name} />
+                            ))}
+                        </div>
                     </div>
-                    {
-                        user ? <></> : <Link to='/login' className='flex justify-center text-blue-400 font-bold mb-2'>Please Click to login and buy the product</Link>
-                    }
                 </div>
-                <div className='shadow-2xl m-4'>
-                    <h1 className='mx-4 my-5 font-bold text-lg'>Dhaka, Dhaka North, Banani Road No. 12 - 19</h1>
-                    <h1 className='mx-4 my-5 font-bold text-lg'>Fastest Delivery Tomorrow 11 Jan Tomorrow</h1>
-                    <h1 className='mx-4 my-5 font-bold text-lg'>Standard Delivery 15 Jan - 20 Jan 5 - 10 day(s)</h1>
-                    <h1 className='mx-4 my-5 font-bold text-lg'>Cash on Delivery Available</h1>
-                </div>
-            </div>
-            <div className='my-5 shadow-xl p-3'>
-                <h1 className='font-bold text-3xl'>Product details of {data.name}</h1>
-                <div className='grid grid-cols-2 '>
-                    <ul className='list-disc'>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                    </ul>
-                    <ul className='list-disc'>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                        <li> quality Details Best Quality </li>
-                    </ul>
-                </div>
-
-
-            </div>
-            <div>
-                <h1 className='text-5xl font-bold'>Ratings</h1>
-                <div className='flex gap-4 mt-5 ' style={{ color: 'gold' }}>
-                    <h1 className='text-5xl font-bold' >{data.ratings}</h1>
-                    <h1 className='bg-orange-400 mx-5 p-3 text-2xl' >very Good</h1>
-                </div>
-                <div className='flex mt-5 p-5'>
-                    {
-                        Array.from({ length: ra }, (v, i) =>
-                            <div key={i}>
-                                <FaStar className='text-5xl font-bold' style={{ color: 'gold' }} />
+                {/* middle: info */}
+                <div className='lg:col-span-4'>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-5'>
+                        <h1 className='text-2xl lg:text-3xl font-bold leading-snug'>{data.name}</h1>
+                        <div className='flex items-center gap-3 mt-3'>
+                            <div className='flex items-center' style={{ color: 'gold' }}>
+                                {Array.from({ length: ra }, (v, i) => <FaStar key={i} className='text-lg' />)}
+                                <FaRegStar className='text-lg' />
                             </div>
+                            <span className='text-sm opacity-80'>{data.ratings} Ratings</span>
+                            <span className='badge badge-ghost'>Sold by {data.seller}</span>
+                        </div>
 
-                        )
-                    }
-                    <FaRegStar className='text-5xl font-bold' style={{ color: 'gold' }} />
+                        <div className='mt-5 space-y-2'>
+                            <div className='flex items-end gap-3'>
+                                <div className='text-4xl font-extrabold text-primary'>$ {Math.floor((data.price / 100) * 80)}</div>
+                                <div className='line-through text-base-300 text-xl'>$ {data.price}</div>
+                                <div className='badge badge-secondary'>20% OFF</div>
+                            </div>
+                            <p className='text-sm opacity-80'>VAT included where applicable</p>
+                        </div>
+
+                        <div className='mt-6'>
+                            <h3 className='font-semibold mb-2'>Highlights</h3>
+                            <ul className='list-disc ml-6 space-y-1 text-sm'>
+                                <li>Best-in-class quality and performance</li>
+                                <li>Authentic seller: {data.seller}</li>
+                                <li>Top rated: {data.ratings} / 5</li>
+                                <li>Fast shipping available</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <h1 className='text-2xl'>Total Rating : {data?.ratingsCount}</h1>
+                {/* right: purchase box */}
+                <div className='lg:col-span-3'>
+                    <div className='rounded-xl border border-base-200 bg-base-100 p-5 sticky top-24'>
+                        <div className='mb-4'>
+                            <div className='text-sm font-semibold mb-1'>Deliver to</div>
+                            <div className='text-sm'>Dhaka, Dhaka North, Banani Road No. 12 - 19</div>
+                            <div className='text-sm mt-1'>Fastest Delivery: Tomorrow</div>
+                            <div className='text-sm'>Standard Delivery: 5 - 10 day(s)</div>
+                            <div className='text-sm mt-1'>Cash on Delivery Available</div>
+                        </div>
+
+                        <div className='grid grid-cols-1 gap-3 mt-4'>
+                            <button className='btn btn-primary btn-block shadow' onClick={handleBuyNow}>Buy Now</button>
+                            <button className='btn btn-outline btn-success btn-block shadow' onClick={hendaleaddtocard}>
+                                Add To Cart <FaCartArrowDown className='text-xl text-black inline ml-1' />
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h1>Revuew :</h1>
-                {/* <div>
-                    <h1>This produc is good</h1>
-                    <img className='w-40' alt='' src={data.img} />
-                </div> */}
+
+            {/* details section */}
+            <div className='my-6 grid grid-cols-1 lg:grid-cols-12 gap-6'>
+                <div className='lg:col-span-8'>
+                    <div className='shadow-sm rounded-xl border border-base-200 p-5'>
+                        <h2 className='font-bold text-2xl mb-3'>Product details of {data.name}</h2>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                            <ul className='list-disc ml-5 space-y-1'>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                            </ul>
+                            <ul className='list-disc ml-5 space-y-1'>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                                <li> quality Details Best Quality </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className='lg:col-span-4'>
+                    <div className='shadow-sm rounded-xl border border-base-200 p-5'>
+                        <h2 className='text-xl font-bold'>Ratings</h2>
+                        <div className='flex items-center gap-3 mt-3' style={{ color: 'gold' }}>
+                            <div className='text-3xl font-bold'>{data.ratings}</div>
+                            <div className='badge badge-secondary'>Very Good</div>
+                        </div>
+                        <div className='flex mt-4'>
+                            {Array.from({ length: ra }, (v, i) => <FaStar key={i} className='text-2xl' style={{ color: 'gold' }} />)}
+                            <FaRegStar className='text-2xl' style={{ color: 'gold' }} />
+                        </div>
+                        <div className='mt-2 text-sm'>Total Rating : {data?.ratingsCount}</div>
+                    </div>
+                </div>
             </div>
         </div>
     );
